@@ -6,7 +6,7 @@ import { ContextPage, PAGE_VALUE, Page, SetContextPage } from './helpers/page-ma
 import './App.scss';
 
 export const App = (): ReactElement => {
-  const [page, setPage] = useState<Page>(() => PAGE_VALUE.TERMOS_DE_USO);
+  const [page, setPage] = useState<Page>(() => PAGE_VALUE.HOME);
 
   const CurrentPage = (): ReactElement => {
     switch(page) {
