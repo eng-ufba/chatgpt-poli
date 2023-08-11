@@ -9,7 +9,6 @@ export const Home  = (): ReactElement => {
     return <div className="home">
         <Sidebar />
         <div className="chat">
-            <Icon.Send />
         </div>
     </div>
 }
