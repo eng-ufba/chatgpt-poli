@@ -1,8 +1,8 @@
-import { ReactElement, useContext, useEffect, useRef, useState } from "react";
+import { ReactElement, useContext, useState } from "react";
 import { Icon } from "../Icons/Icon";
-import './Sidebar.scss';
 import { ContextPage, SetContextPage } from "../../helpers/page-manager/pageManager";
 import { ContextChats } from "../../helpers/stores/chats";
+import './Sidebar.scss';
 
 type SidebarProps = {
     activeChatIndex: number,
@@ -13,12 +13,7 @@ export const Sidebar = ({activeChatIndex, setActiveChatIndex}: SidebarProps): Re
     const [page, setPage] = [useContext(ContextPage), useContext(SetContextPage)];
     const chatsStore = useContext(ContextChats);
     const chats = chatsStore.getAll();
-
     const [isEditingTitleList, setIsEditingTitleList] = useState(chats.map(_ => false));
-
-    useEffect(() => {
-        console.log('sidebar: ', chats);
-    }, [chats]);
 
     const addNewChat = (): void => {
         chatsStore.add({
@@ -41,6 +36,7 @@ export const Sidebar = ({activeChatIndex, setActiveChatIndex}: SidebarProps): Re
 
     const removeChat = (id: string): void => {
         chatsStore.remove(id);
+        setActiveChatIndex(0);
     }
 
     const isToHideIcon = (index: number): boolean => {

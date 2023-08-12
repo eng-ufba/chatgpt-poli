@@ -2,10 +2,6 @@
     display: flex;
     width: 100%;
 
-    .sidebar {
-        width: 260px;
-    }
-
     .chat {
         width: calc(100% - 260px - 32px);
         padding: 20px 40px;
@@ -13,6 +9,44 @@
         .container {
             height: 100%;
             position: relative;
+
+            .messages-container {
+
+                .question-container {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: end;
+                    align-items: center;
+                    margin-bottom: 20px;
+
+                    .text {
+                        border-radius: 8px;
+                        background-color: var(--primary-blue);
+                        color: #fff;
+                        padding: 20px 40px;
+                        max-width: 300px;
+                    }
+                }
+
+                .answer-container {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: start;
+                    align-items: center;
+                    margin-bottom: 20px;
+
+                    .text {
+                        border-radius: 8px;
+                        background-color: #F5F5F5;
+                        padding: 20px 40px;
+                        max-width: 300px;
+                    }
+
+                    .icon-button {
+                        cursor: pointer;
+                    }
+                }
+            }
 
             .bottom-container {
                 bottom: 20px;

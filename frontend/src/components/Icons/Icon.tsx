@@ -7,6 +7,7 @@ import { HamburguerIcon } from "./HamburguerIcon";
 import { InfoIcon } from "./InfoIcon";
 import { SendIcon } from "./SendIcon";
 import { WarnIcon } from "./WarnIcon";
+import { CopyIcon } from "./CopyIcon";
 
 export namespace Icon {
     export const Add = AddIcon;
@@ -17,4 +18,5 @@ export namespace Icon {
     export const Info = InfoIcon;
     export const Send = SendIcon;
     export const Warn = WarnIcon;
+    export const Copy = CopyIcon;
 }

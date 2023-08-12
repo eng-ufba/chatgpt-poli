@@ -8,6 +8,7 @@ export const chatsStore = (chats: Array<Chat>, dispatch: DispatchChat): ChatStor
     const getAll = (): Array<Chat> => {
         return chats;
     };
+
     const getOne = (id: string): Chat => {
         const chat = chats.find(currentChat => currentChat.id === id);
 
@@ -17,6 +18,7 @@ export const chatsStore = (chats: Array<Chat>, dispatch: DispatchChat): ChatStor
 
         return chat;
     };
+
     const add = (chat: Omit<Chat, 'id'>): void => {
         const addedChat = {
             ...chat,
@@ -24,9 +26,11 @@ export const chatsStore = (chats: Array<Chat>, dispatch: DispatchChat): ChatStor
         };
         dispatch((previousChats) => [...previousChats, addedChat]);
     };
+
     const remove = (id: string): void => {
         dispatch((previousChats) => previousChats.filter(chat => chat.id !== id));
     };
+    
     const update = (updatedChat: UpdatableChat): void => {
         dispatch((previousChats) => previousChats.map(chat => {
             if (chat.id === updatedChat.id) {
