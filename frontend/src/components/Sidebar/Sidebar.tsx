@@ -44,20 +44,21 @@ export const Sidebar = ({activeChatIndex, setActiveChatIndex}: SidebarProps): Re
     }
 
     return <div className="sidebar">
-    <div className="top-container">
+        <div className="container">
+            <div className="top-container">
         <h1 className="title">ChatBot - Poli</h1>
         <button className="hamburguer-button">
             <Icon.Hamburguer />
         </button>
-    </div>
-    <button className="add-button" onClick={addNewChat}>
+            </div>
+            <button className="add-button" onClick={addNewChat}>
             <Icon.Add />
             <h3 className="text">
                 Novo Chat
             </h3>
-    </button>
-    <div className="line" aria-hidden="true"></div>
-    <div className="middle-container">
+            </button>
+            <div className="line" aria-hidden="true"></div>
+            <div className="middle-container">
         {chats.map((chat, index) => {
             return <div className={getChatContainerClass(index)} key={'chat-'+ chat.id} onClick={() => setActiveChatIndex(index)}>
             <h3 className="text" contentEditable={isEditingTitleList[index]}>{chat.title}</h3>
@@ -69,10 +70,11 @@ export const Sidebar = ({activeChatIndex, setActiveChatIndex}: SidebarProps): Re
             </button>
         </div>
         })}
-    </div>
-    <div className="links">
+            </div>
+            <div className="links">
         <a>Termos de uso</a>
         <a>Política de privacidade</a>
-    </div>
+            </div>
+        </div>
     </div>
 }

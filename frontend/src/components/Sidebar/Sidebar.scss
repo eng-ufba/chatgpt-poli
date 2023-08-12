@@ -1,180 +1,182 @@
 .sidebar {
     background: var(--primary-blue);;
-    width: 260px;
-    height: 100%;
-    padding: 16px 16px 8px 16px;
-    min-height: 100vh;
+    width: 292px;
+    height: 100vh;
 
-    .top-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 16px;
+    .container {
+        padding: 16px 16px 8px 16px;
 
-        .title {
-            color: #FFF;
-            font-family: Poppins, sans-serif;
-            font-size: 1.5rem;
-            font-style: normal;
-            font-weight: 700;
-            line-height: normal;
-        }
-
-        .hamburguer-button {
-            cursor: pointer;
-
-            .hamburguer-icon {
-                height: 24px;
-                width: 24px;
-                path {
-                    fill: #C4C5D0;
+        .top-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+    
+            .title {
+                color: #FFF;
+                font-family: Poppins, sans-serif;
+                font-size: 1.5rem;
+                font-style: normal;
+                font-weight: 700;
+                line-height: normal;
+            }
+    
+            .hamburguer-button {
+                cursor: pointer;
+    
+                .hamburguer-icon {
+                    height: 24px;
+                    width: 24px;
+                    path {
+                        fill: #C4C5D0;
+                    }
                 }
             }
         }
-    }
-
-    .add-button {
-        cursor: pointer;
-        display: flex;
-        justify-content: start;
-        align-items: center;
-        width: 100%;
-        gap: 16px;
-        margin: 48px 0 12px 0;
-        border-radius: 8px;
-        padding: 12px 8px;
-        transition: 0.3s;
-
-        &:hover {
-            background: rgba(0, 0, 0, 0.15);
-        }
-
-        .add-icon {
-            height: 24px;
-            width: 24px;
-        }
-
-        .text {
-            color: #C4C5D0;
-            font-family: Poppins, sans-serif;
-            font-size: 1rem;
-            font-style: normal;
-            font-weight: 400;
-            line-height: normal;
-        }
-    }
-
-    .line {
-        width: 100%;
-        height: 1px;
-        background: #C4C5D0;
-    }
-
-    .middle-container {
-        height: 100%;
-        margin-top: 16px;
-        gap: 12px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-
-        .chat-container {
-            border-radius: 8px;
+    
+        .add-button {
             cursor: pointer;
             display: flex;
             justify-content: start;
             align-items: center;
-            gap: 8px;
             width: 100%;
-            position: relative;
+            gap: 16px;
+            margin: 48px 0 12px 0;
+            border-radius: 8px;
+            padding: 12px 8px;
             transition: 0.3s;
-            padding: 12px 0 12px 12px;
-
+    
             &:hover {
                 background: rgba(0, 0, 0, 0.15);
             }
-
-            .edit-button {
-                cursor: pointer;
-                position: absolute;
-                right: 36px;
-
-                .edit-icon {
-                    height: 24px;
-                    width: 24px;
-                }
+    
+            .add-icon {
+                height: 24px;
+                width: 24px;
             }
-
+    
             .text {
                 color: #C4C5D0;
                 font-family: Poppins, sans-serif;
-                font-size: 16px;
+                font-size: 1rem;
                 font-style: normal;
                 font-weight: 400;
                 line-height: normal;
             }
-
-            .delete-button {
+        }
+    
+        .line {
+            width: 100%;
+            height: 1px;
+            background: #C4C5D0;
+        }
+    
+        .middle-container {
+            margin-top: 16px;
+            gap: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+    
+            .chat-container {
+                border-radius: 8px;
                 cursor: pointer;
-                position: absolute;
-                right: 8px;
-
-                .delete-icon {
-                    height: 24px;
-                    width: 24px;
+                display: flex;
+                justify-content: start;
+                align-items: center;
+                gap: 8px;
+                width: 100%;
+                position: relative;
+                transition: 0.3s;
+                padding: 12px 0 12px 12px;
+    
+                &:hover {
+                    background: rgba(0, 0, 0, 0.15);
+                }
+    
+                .edit-button {
+                    cursor: pointer;
+                    position: absolute;
+                    right: 36px;
+    
+                    .edit-icon {
+                        height: 24px;
+                        width: 24px;
+                    }
+                }
+    
+                .text {
+                    color: #C4C5D0;
+                    font-family: Poppins, sans-serif;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: normal;
+                }
+    
+                .delete-button {
+                    cursor: pointer;
+                    position: absolute;
+                    right: 8px;
+    
+                    .delete-icon {
+                        height: 24px;
+                        width: 24px;
+                    }
                 }
             }
-        }
-
-        .chat-container-active {
-            background: white;
-            transition: 0.3s;
-
-            &:hover {
+    
+            .chat-container-active {
                 background: white;
-            }
-
-            .edit-button {
-                .edit-icon {
-                    path {
-                        fill: var(--primary-blue);;
+                transition: 0.3s;
+    
+                &:hover {
+                    background: white;
+                }
+    
+                .edit-button {
+                    .edit-icon {
+                        path {
+                            fill: var(--primary-blue);;
+                        }
                     }
                 }
-            }
-
-            .text {
-                color: var(--primary-blue);;
-            }
-
-            .delete-button {
-                .delete-icon {
-                    path {
-                        fill: var(--primary-blue);;
+    
+                .text {
+                    color: var(--primary-blue);;
+                }
+    
+                .delete-button {
+                    .delete-icon {
+                        path {
+                            fill: var(--primary-blue);;
+                        }
                     }
                 }
             }
         }
-    }
-
-    .links {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-        position: absolute;
-        width: 260px;
-        bottom: -16px;
-
-        a {
-            cursor: pointer;
-            color: rgba(196, 197, 208, 0.50);
-            text-align: center;
-            font-family: Roboto;
-            font-size: 0.875rem;
-            font-style: normal;
-            font-weight: 400;
-            line-height: normal;
-            text-decoration: underline;
+    
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            position: absolute;
+            width: 260px;
+            bottom: 16px;
+            // display: none;
+    
+            a {
+                cursor: pointer;
+                color: rgba(196, 197, 208, 0.50);
+                text-align: center;
+                font-family: Roboto;
+                font-size: 0.875rem;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+                text-decoration: underline;
+            }
         }
     }
 }
