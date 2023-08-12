@@ -2,14 +2,23 @@ import { ReactElement, useContext, useEffect, useRef, useState } from "react";
 import { Icon } from "../Icons/Icon";
 import './Sidebar.scss';
 import { ContextPage, SetContextPage } from "../../helpers/page-manager/pageManager";
-import { ACTIONS, Chat, useChatReducerFn } from "../../helpers/stores/chats";
+import { ACTIONS, Chat, useChatReducerFn } from "../../helpers/stores/chat";
 import { generateUniqueId } from "../../helpers/utils";
+import { ContextChats } from "../../helpers/stores/chats/facade";
 
 export const Sidebar = (): ReactElement => {
     const [page, setPage] = [useContext(ContextPage), useContext(SetContextPage)];
-    const [state, setState] = useChatReducerFn();
-    const { chats, activeChatIndex } = state;
+    const [state, dispatch] = useChatReducerFn();
+
+    const chatsStore = useContext(ContextChats);
+    const chats = chatsStore.getAll();
+
+    const { activeChatIndex } = state;
     const [isEditingTitleList, setIsEditingTitleList] = useState(chats.map(_ => false));
+
+    useEffect(() => {
+        console.log('sidebar: ', chats);
+    }, [chats]);
 
     useEffect(() => {
         setIsEditingTitleList(chats.map(_ => false));
@@ -17,16 +26,11 @@ export const Sidebar = (): ReactElement => {
     }, [state]);
 
     const addNewChat = (): void => {
-        setState({
-            type: ACTIONS.CHAT.ADD,
-            payload: {
-                chat: {
-                    id: generateUniqueId(),
-                    title: `Chat ${chats.length + 1}`,
-                    questions: [],
-                    answers: []
-                }
-            }
+        chatsStore.add({
+            id: generateUniqueId(),
+            title: `Chat ${chats.length + 1}`,
+            questions: [],
+            answers: []
         })
     }
 
@@ -35,7 +39,7 @@ export const Sidebar = (): ReactElement => {
     }
 
     const setActiveChatIndex = (index: number): void => {
-        setState({
+        dispatch({
             type: ACTIONS.ACTIVE_CHAT_INDEX.UPDATE,
             payload: {
                 activeChatIndex: index
@@ -50,13 +54,8 @@ export const Sidebar = (): ReactElement => {
         });
     }
 
-    const deleteChat = (chat: Chat): void => {
-        setState({
-            type: ACTIONS.CHAT.DELETE,
-            payload: {
-                chat
-            }
-        })
+    const removeChat = (chat: Chat): void => {
+        chatsStore.remove(chat.id);
     }
 
     const isToHideIcon = (index: number): boolean => {
@@ -84,7 +83,7 @@ export const Sidebar = (): ReactElement => {
             <button hidden={isToHideIcon(index)} className="edit-button" onClick={() => editChatTitle(index)}>
                 <Icon.Edit />
             </button>
-            <button hidden={isToHideIcon(index)} className="delete-button" onClick={() => deleteChat(chat)}>
+            <button hidden={isToHideIcon(index)} className="delete-button" onClick={() => removeChat(chat)}>
                 <Icon.Delete />
             </button>
         </div>

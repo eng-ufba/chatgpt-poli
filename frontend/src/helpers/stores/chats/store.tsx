@@ -1,31 +1,14 @@
-import { useReducer } from "react";
-import { State } from "./state";
-import { reducer } from "./reducer";
+import { ReactElement, ReactNode } from "react";
+import { ContextChats, useChatsStore } from "./facade";
 
-const initialState: State = {
-    chats: [
-        {
-            id: '1',
-            title: 'Chat 1',
-            questions: ['Qual a velocidade da luz ?'],
-            answers: ['300000km por segundo']
-        },
-        {
-            id: '2',
-            title: 'Chat 2',
-            questions: ['Quem nasceu primeiro, o ovo ou a galinha ?'],
-            answers: ['A galinha, é claro.']
-        },
-        {
-            id: '3',
-            title: 'Chat 3',
-            questions: ['Quantos vertices tem um cubo ?'],
-            answers: ['Um cubo tem 8 vertices.']
-        }
-    ],
-    activeChatIndex: 0
+type StoreProps = {
+    children: ReactNode
 }
 
-export const useReducerFn = () => {
-    return useReducer(reducer, initialState);
+export const Store = ({ children }: StoreProps): ReactElement => {
+    const [chats, chatsStore] = useChatsStore();
+
+    return <ContextChats.Provider value={chatsStore}>
+        { children }
+    </ContextChats.Provider>
 }
