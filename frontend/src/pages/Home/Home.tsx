@@ -1,4 +1,4 @@
-import { ReactElement, useContext, useEffect, useRef, useState } from "react";
+import { ReactElement, SyntheticEvent, useContext, useEffect, useRef, useState } from "react";
 import { ContextPage, SetContextPage } from "../../helpers/page-manager/pageManager";
 import { Sidebar } from "../../components/Sidebar/Sidebar";
 import { Icon } from "../../components/Icons/Icon";
@@ -18,6 +18,14 @@ export const Home  = (): ReactElement => {
         if(textInput.current) {
             textInput.current.value = '';
         }
+    }
+
+    const onKeyDown = (event: any): void => {
+        const isEnterKey = event.keyCode === 13;
+
+        if (isEnterKey) {
+            sendQuestion();
+          }
     }
 
     const sendQuestion = async(): Promise<void> => {
@@ -74,7 +82,7 @@ export const Home  = (): ReactElement => {
                 })}
                 </div>
             <div className="bottom-container">
-                <input ref={textInput} type="text" placeholder="Escreva sua perga aqui..." />
+                <input ref={textInput} onKeyDown={(e) => onKeyDown(e)} type="text" placeholder="Escreva sua perga aqui..." />
                 <button onClick={sendQuestion}>
                     <Icon.Send />
                 </button>
