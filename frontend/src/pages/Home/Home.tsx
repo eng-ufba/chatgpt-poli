@@ -2,19 +2,15 @@ import { ReactElement, useContext, useEffect, useState } from "react";
 import { ContextPage, SetContextPage } from "../../helpers/page-manager/pageManager";
 import { Sidebar } from "../../components/Sidebar/Sidebar";
 import { Icon } from "../../components/Icons/Icon";
-import { ACTIONS, Chat, useChatReducerFn } from "../../helpers/stores/chat";
 import './Home.scss';
 import { ContextChats } from "../../helpers/stores/chats/facade";
 
 export const Home  = (): ReactElement => {
     const [page, setPage] = [useContext(ContextPage), useContext(SetContextPage)];
-    const [state, dispatch] = useChatReducerFn();
-
+    const [activeChatIndex, setActiveChatIndex] = useState<number>(() => 0);
     const chatsStore = useContext(ContextChats);
     const chats = chatsStore.getAll();
-
-    const { activeChatIndex } = state;
-    const [activeChat, setActiveChat] = useState<Chat>(() => chats[activeChatIndex]);
+    const activeChat = chats[activeChatIndex];
 
     useEffect(() => {
         console.log(chats);
@@ -22,7 +18,6 @@ export const Home  = (): ReactElement => {
 
     const addMockChat = (): void => {
         chatsStore.add({
-            id: '12123123',
             title: 'neww chat',
             questions: [],
             answers: []
@@ -30,16 +25,11 @@ export const Home  = (): ReactElement => {
     }
 
     return <div className="home">
-        <Sidebar />
+        <Sidebar activeChatIndex={activeChatIndex} setActiveChatIndex={setActiveChatIndex} />
         <div className="chat">
             <div className="container">
             <div className="messages-container">
-                <button onClick={addMockChat}>Add</button>
-                {chats.map((chat, index) => {
-                    return <div key={'chat-' + index}>
-                        <h1>{chat.title}</h1>
-                    </div>
-                })}
+                <h1>{activeChat.title}</h1>
             </div>
             <div className="bottom-container">
                 <input type="text" placeholder="Escreva sua perga aqui..." />

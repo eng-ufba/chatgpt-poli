@@ -3,7 +3,7 @@ import React from "react";
 import { useState } from "react";
 import { generateUniqueId } from "../../utils";
 
-type Chat = {
+export type Chat = {
     id: string,
     title: string,
     questions: Array<string>,
@@ -14,10 +14,12 @@ type UpdatableChat = {
     id: string
 } & Partial<Chat>;
 
+type CreatableChat = Omit<Chat, 'id'>;
+
 type ChatStore = {
     getAll: () => Array<Chat>;
     getOne: (id: string) => Chat;
-    add: (chat: Chat) => void;
+    add: (chat: CreatableChat) => void;
     remove: (id: string) => void;
     update: (updatedChat: UpdatableChat) => void;
 }
@@ -86,7 +88,7 @@ const initialChats = [
         questions: ['Quantos vertices tem um cubo ?'],
         answers: ['Um cubo tem 8 vertices.']
     }
-]
+];
 
 export const useChatsStore: () => [Array<Chat>, ChatStore] = () => {
     const [chats, dispatch] = useState<Array<Chat>>(() => initialChats);

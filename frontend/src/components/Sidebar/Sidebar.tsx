@@ -2,32 +2,26 @@ import { ReactElement, useContext, useEffect, useRef, useState } from "react";
 import { Icon } from "../Icons/Icon";
 import './Sidebar.scss';
 import { ContextPage, SetContextPage } from "../../helpers/page-manager/pageManager";
-import { ACTIONS, Chat, useChatReducerFn } from "../../helpers/stores/chat";
-import { generateUniqueId } from "../../helpers/utils";
-import { ContextChats } from "../../helpers/stores/chats/facade";
+import { Chat, ContextChats } from "../../helpers/stores/chats/facade";
 
-export const Sidebar = (): ReactElement => {
+type SidebarProps = {
+    activeChatIndex: number,
+    setActiveChatIndex: React.Dispatch<React.SetStateAction<number>>
+}
+
+export const Sidebar = ({activeChatIndex, setActiveChatIndex}: SidebarProps): ReactElement => {
     const [page, setPage] = [useContext(ContextPage), useContext(SetContextPage)];
-    const [state, dispatch] = useChatReducerFn();
-
     const chatsStore = useContext(ContextChats);
     const chats = chatsStore.getAll();
 
-    const { activeChatIndex } = state;
     const [isEditingTitleList, setIsEditingTitleList] = useState(chats.map(_ => false));
 
     useEffect(() => {
         console.log('sidebar: ', chats);
     }, [chats]);
 
-    useEffect(() => {
-        setIsEditingTitleList(chats.map(_ => false));
-        console.log(state);
-    }, [state]);
-
     const addNewChat = (): void => {
         chatsStore.add({
-            id: generateUniqueId(),
             title: `Chat ${chats.length + 1}`,
             questions: [],
             answers: []
@@ -36,15 +30,6 @@ export const Sidebar = (): ReactElement => {
 
     const getChatContainerClass = (index: number): string => {
         return `chat-container ${index === activeChatIndex ? 'chat-container-active' : ''}`;
-    }
-
-    const setActiveChatIndex = (index: number): void => {
-        dispatch({
-            type: ACTIONS.ACTIVE_CHAT_INDEX.UPDATE,
-            payload: {
-                activeChatIndex: index
-            }
-        });
     }
 
     const editChatTitle = (index: number): void => {
