@@ -27,8 +27,13 @@
                     align-items: center;
                     gap: 41px;
                     border-radius: 17px;
-                    border: 1px solid rgb(212, 192, 192);
+                    border: 1px solid rgba(0, 0, 0, 0.4);
                     transition: 0.3s;
+
+                    &:hover {
+                        border: 1px solid rgba(0, 0, 0, 1);
+                        transform: translateY(-2px);
+                    }
                 }
     
                 button {
@@ -38,10 +43,18 @@
                     height: 54px;
                     width: 54px;
                     transition: 0.3s;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
     
                     &:hover {
                         box-shadow: 3px 3px 12px 0px rgba(23, 195, 206, 0.35);
-                        transform: translateY(-4px);
+                        transform: translateY(-2px);
+                    }
+
+                    .send-icon {
+                        height: 30px;
+                        width: 30px;
                     }
                 }
             }

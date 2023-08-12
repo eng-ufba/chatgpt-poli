@@ -4,8 +4,6 @@ import './Sidebar.scss';
 import { ContextPage, SetContextPage } from "../../helpers/page-manager/pageManager";
 import { ACTIONS, Chat, useChatReducerFn } from "../../helpers/stores/chats";
 import { generateUniqueId } from "../../helpers/utils";
-import React from "react";
-import { isUndefined } from "lodash";
 
 export const Sidebar = (): ReactElement => {
     const [page, setPage] = [useContext(ContextPage), useContext(SetContextPage)];
@@ -15,9 +13,7 @@ export const Sidebar = (): ReactElement => {
 
     useEffect(() => {
         setIsEditingTitleList(chats.map(_ => false));
-        console.log(chats);
-        console.log(isEditingTitleList);
-    }, [chats]);
+    }, [chats, activeChatIndex]);
 
     const addNewChat = (): void => {
         setState({
@@ -43,7 +39,7 @@ export const Sidebar = (): ReactElement => {
             payload: {
                 activeChatIndex: index
             }
-        })
+        });
     }
 
     const editChatTitle = (index: number): void => {
