@@ -13,7 +13,8 @@ export const Sidebar = (): ReactElement => {
 
     useEffect(() => {
         setIsEditingTitleList(chats.map(_ => false));
-    }, [chats, activeChatIndex]);
+        console.log(state);
+    }, [state]);
 
     const addNewChat = (): void => {
         setState({
@@ -29,11 +30,11 @@ export const Sidebar = (): ReactElement => {
         })
     }
 
-    const getChatContainerClass = (chatIndex: number): string => {
-        return `chat-container ${chatIndex === activeChatIndex ? 'chat-container-active' : ''}`;
+    const getChatContainerClass = (index: number): string => {
+        return `chat-container ${index === activeChatIndex ? 'chat-container-active' : ''}`;
     }
 
-    const selectCurrentChat = (index: number): void => {
+    const setActiveChatIndex = (index: number): void => {
         setState({
             type: ACTIONS.ACTIVE_CHAT_INDEX.UPDATE,
             payload: {
@@ -78,7 +79,7 @@ export const Sidebar = (): ReactElement => {
     <div className="line" aria-hidden="true"></div>
     <div className="middle-container">
         {chats.map((chat, index) => {
-            return <div className={getChatContainerClass(index)} key={'chat-'+ chat.id} onClick={() => selectCurrentChat(index)}>
+            return <div className={getChatContainerClass(index)} key={'chat-'+ chat.id} onClick={() => setActiveChatIndex(index)}>
             <h3 className="text" contentEditable={isEditingTitleList[index]}>{chat.title}</h3>
             <button hidden={isToHideIcon(index)} className="edit-button" onClick={() => editChatTitle(index)}>
                 <Icon.Edit />

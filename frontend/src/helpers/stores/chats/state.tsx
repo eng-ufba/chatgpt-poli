@@ -1,5 +1,3 @@
-import { Action } from "./actions"
-
 export type Chat = {
     id: string,
     title: string,

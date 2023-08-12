@@ -1,5 +1,5 @@
 .sidebar {
-    background: #0D3A6A;;
+    background: var(--primary-blue);;
     height: 100%;
     padding: 16px 16px 8px 16px;
     min-height: 100vh;
@@ -137,19 +137,19 @@
             .edit-button {
                 .edit-icon {
                     path {
-                        fill: #0D3A6A;;
+                        fill: var(--primary-blue);;
                     }
                 }
             }
 
             .text {
-                color: #0D3A6A;;
+                color: var(--primary-blue);;
             }
 
             .delete-button {
                 .delete-icon {
                     path {
-                        fill: #0D3A6A;;
+                        fill: var(--primary-blue);;
                     }
                 }
             }

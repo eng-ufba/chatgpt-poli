@@ -1,9 +1,9 @@
 import { ReactElement, useContext, useEffect, useState } from "react";
 import { ContextPage, SetContextPage } from "../../helpers/page-manager/pageManager";
 import { Sidebar } from "../../components/Sidebar/Sidebar";
-import './Home.scss';
 import { Icon } from "../../components/Icons/Icon";
 import { Chat, useChatReducerFn } from "../../helpers/stores/chats";
+import './Home.scss';
 
 export const Home  = (): ReactElement => {
     const [page, setPage] = [useContext(ContextPage), useContext(SetContextPage)];
@@ -15,7 +15,7 @@ export const Home  = (): ReactElement => {
     useEffect(() => {
         console.log('state');
         setChat(() => chats[activeChatIndex]);
-    }, [chats])
+    }, [state])
 
     return <div className="home">
         <Sidebar />

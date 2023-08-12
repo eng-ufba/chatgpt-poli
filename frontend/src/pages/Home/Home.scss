@@ -22,7 +22,7 @@
                 width: 100%;
     
                 input {
-                    width: 100%;
+                    width: calc(100% - 24px - 54px);
                     padding: 16px;
                     align-items: center;
                     gap: 41px;
@@ -38,7 +38,7 @@
     
                 button {
                     border-radius: 100%;
-                    background: #0D3A6A;
+                    background: var(--primary-blue);
                     cursor: pointer;
                     height: 54px;
                     width: 54px;
