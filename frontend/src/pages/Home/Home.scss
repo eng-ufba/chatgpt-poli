@@ -1,3 +1,50 @@
-:host {
+.home {
+    display: flex;
+    width: 100%;
+
+    .sidebar {
+        width: 260px;
+    }
+
+    .chat {
+        width: calc(100% - 260px);
+        padding: 20px 40px;
+
+        .container {
+            height: 100%;
+            position: relative;
+
+            .bottom-container {
+                bottom: 20px;
+                position: absolute;
+                display: flex;
+                gap: 24px;
+                width: 100%;
     
+                input {
+                    width: 100%;
+                    padding: 16px;
+                    align-items: center;
+                    gap: 41px;
+                    border-radius: 17px;
+                    border: 1px solid rgb(212, 192, 192);
+                    transition: 0.3s;
+                }
+    
+                button {
+                    border-radius: 100%;
+                    background: #0D3A6A;
+                    cursor: pointer;
+                    height: 54px;
+                    width: 54px;
+                    transition: 0.3s;
+    
+                    &:hover {
+                        box-shadow: 3px 3px 12px 0px rgba(23, 195, 206, 0.35);
+                        transform: translateY(-4px);
+                    }
+                }
+            }
+        }
+    }
 }

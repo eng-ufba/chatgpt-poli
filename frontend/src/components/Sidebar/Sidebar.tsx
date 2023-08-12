@@ -1,9 +1,11 @@
-import { ReactElement, useContext, useEffect, useState } from "react";
+import { ReactElement, useContext, useEffect, useRef, useState } from "react";
 import { Icon } from "../Icons/Icon";
 import './Sidebar.scss';
 import { ContextPage, SetContextPage } from "../../helpers/page-manager/pageManager";
 import { ACTIONS, Chat, useChatReducerFn } from "../../helpers/stores/chats";
 import { generateUniqueId } from "../../helpers/utils";
+import React from "react";
+import { isUndefined } from "lodash";
 
 export const Sidebar = (): ReactElement => {
     const [page, setPage] = [useContext(ContextPage), useContext(SetContextPage)];
