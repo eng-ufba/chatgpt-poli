@@ -2,7 +2,7 @@ import { ReactElement, useContext, useEffect, useRef, useState } from "react";
 import { Icon } from "../Icons/Icon";
 import './Sidebar.scss';
 import { ContextPage, SetContextPage } from "../../helpers/page-manager/pageManager";
-import { Chat, ContextChats } from "../../helpers/stores/chats/facade";
+import { ContextChats } from "../../helpers/stores/chats";
 
 type SidebarProps = {
     activeChatIndex: number,
@@ -39,8 +39,8 @@ export const Sidebar = ({activeChatIndex, setActiveChatIndex}: SidebarProps): Re
         });
     }
 
-    const removeChat = (chat: Chat): void => {
-        chatsStore.remove(chat.id);
+    const removeChat = (id: string): void => {
+        chatsStore.remove(id);
     }
 
     const isToHideIcon = (index: number): boolean => {
@@ -68,7 +68,7 @@ export const Sidebar = ({activeChatIndex, setActiveChatIndex}: SidebarProps): Re
             <button hidden={isToHideIcon(index)} className="edit-button" onClick={() => editChatTitle(index)}>
                 <Icon.Edit />
             </button>
-            <button hidden={isToHideIcon(index)} className="delete-button" onClick={() => removeChat(chat)}>
+            <button hidden={isToHideIcon(index)} className="delete-button" onClick={() => removeChat(chat.id)}>
                 <Icon.Delete />
             </button>
         </div>

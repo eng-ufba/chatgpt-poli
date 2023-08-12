@@ -2,29 +2,7 @@ import { isUndefined } from "lodash";
 import React from "react";
 import { useState } from "react";
 import { generateUniqueId } from "../../utils";
-
-export type Chat = {
-    id: string,
-    title: string,
-    questions: Array<string>,
-    answers: Array<string>
-}
-
-type UpdatableChat = {
-    id: string
-} & Partial<Chat>;
-
-type CreatableChat = Omit<Chat, 'id'>;
-
-type ChatStore = {
-    getAll: () => Array<Chat>;
-    getOne: (id: string) => Chat;
-    add: (chat: CreatableChat) => void;
-    remove: (id: string) => void;
-    update: (updatedChat: UpdatableChat) => void;
-}
-
-type DispatchChat = React.Dispatch<React.SetStateAction<Array<Chat>>>;
+import { Chat, ChatStore, DispatchChat, UpdatableChat } from "./types";
 
 export const chatsStore = (chats: Array<Chat>, dispatch: DispatchChat): ChatStore => {
     const getAll = (): Array<Chat> => {
@@ -66,31 +44,3 @@ export const chatsStore = (chats: Array<Chat>, dispatch: DispatchChat): ChatStor
         update
     }
 }
-
-export const ContextChats = React.createContext({} as unknown as ChatStore);
-
-const initialChats = [
-    {
-        id: '1',
-        title: 'Chat 1',
-        questions: ['Qual a velocidade da luz ?'],
-        answers: ['300000km por segundo']
-    },
-    {
-        id: '2',
-        title: 'Chat 2',
-        questions: ['Quem nasceu primeiro, o ovo ou a galinha ?'],
-        answers: ['A galinha, é claro.']
-    },
-    {
-        id: '3',
-        title: 'Chat 3',
-        questions: ['Quantos vertices tem um cubo ?'],
-        answers: ['Um cubo tem 8 vertices.']
-    }
-];
-
-export const useChatsStore: () => [Array<Chat>, ChatStore] = () => {
-    const [chats, dispatch] = useState<Array<Chat>>(() => initialChats);
-    return [chats, chatsStore(chats, dispatch)];
-};

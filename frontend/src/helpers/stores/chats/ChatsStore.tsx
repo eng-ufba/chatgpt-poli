@@ -1,12 +1,12 @@
 import { ReactElement, ReactNode } from "react";
-import { ContextChats, useChatsStore } from "./facade";
+import { ContextChats, useChatsStore } from "./hooks";
 
 type StoreProps = {
     children: ReactNode
 }
 
-export const Store = ({ children }: StoreProps): ReactElement => {
-    const [chats, chatsStore] = useChatsStore();
+export const ChatsStore = ({ children }: StoreProps): ReactElement => {
+    const [_chats, chatsStore] = useChatsStore();
 
     return <ContextChats.Provider value={chatsStore}>
         { children }

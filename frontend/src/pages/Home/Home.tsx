@@ -3,7 +3,7 @@ import { ContextPage, SetContextPage } from "../../helpers/page-manager/pageMana
 import { Sidebar } from "../../components/Sidebar/Sidebar";
 import { Icon } from "../../components/Icons/Icon";
 import './Home.scss';
-import { ContextChats } from "../../helpers/stores/chats/facade";
+import { ContextChats } from "../../helpers/stores/chats";
 
 export const Home  = (): ReactElement => {
     const [page, setPage] = [useContext(ContextPage), useContext(SetContextPage)];
@@ -15,14 +15,6 @@ export const Home  = (): ReactElement => {
     useEffect(() => {
         console.log(chats);
     }, [chats]);
-
-    const addMockChat = (): void => {
-        chatsStore.add({
-            title: 'neww chat',
-            questions: [],
-            answers: []
-        })
-    }
 
     return <div className="home">
         <Sidebar activeChatIndex={activeChatIndex} setActiveChatIndex={setActiveChatIndex} />
