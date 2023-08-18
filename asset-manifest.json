@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/eng-ufba/chatgpt-poli/static/css/main.63d5aff1.css",
-    "main.js": "/eng-ufba/chatgpt-poli/static/js/main.d40ce20d.js",
-    "static/js/787.cda612ba.chunk.js": "/eng-ufba/chatgpt-poli/static/js/787.cda612ba.chunk.js",
-    "index.html": "/eng-ufba/chatgpt-poli/index.html",
-    "main.63d5aff1.css.map": "/eng-ufba/chatgpt-poli/static/css/main.63d5aff1.css.map",
-    "main.d40ce20d.js.map": "/eng-ufba/chatgpt-poli/static/js/main.d40ce20d.js.map",
-    "787.cda612ba.chunk.js.map": "/eng-ufba/chatgpt-poli/static/js/787.cda612ba.chunk.js.map"
+    "main.css": "/chatgpt-poli/static/css/main.63d5aff1.css",
+    "main.js": "/chatgpt-poli/static/js/main.765f73e9.js",
+    "static/js/787.cda612ba.chunk.js": "/chatgpt-poli/static/js/787.cda612ba.chunk.js",
+    "index.html": "/chatgpt-poli/index.html",
+    "main.63d5aff1.css.map": "/chatgpt-poli/static/css/main.63d5aff1.css.map",
+    "main.765f73e9.js.map": "/chatgpt-poli/static/js/main.765f73e9.js.map",
+    "787.cda612ba.chunk.js.map": "/chatgpt-poli/static/js/787.cda612ba.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.63d5aff1.css",
-    "static/js/main.d40ce20d.js"
+    "static/js/main.765f73e9.js"
   ]
 }
