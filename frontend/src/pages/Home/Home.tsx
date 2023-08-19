@@ -62,7 +62,7 @@ export const Home  = (): ReactElement => {
     }
 
     const getSidebarContainerClass = (): string => {
-        return isSidebarOpen ? 'sidebar-container-active' : 'sidebar-container';
+        return isSidebarOpen ? 'sidebar-container-open' : 'sidebar-container';
     }
 
     const toggleSidebar = (): void => {

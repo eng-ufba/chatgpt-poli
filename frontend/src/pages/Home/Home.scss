@@ -104,29 +104,21 @@
 
         .sidebar-container {
             .sidebar {
-                animation: colapse 0.3s ease-in;
-            }
-
-            display: none;
-        }
-
-        @keyframes colapse {
-            0% {
-                width: 100%;
-                opacity: 1;
-            }
-            100% {
-                width: 0;
-                opacity: 0;
+                // animation: colapse 0.3s ease-in;
+                position: absolute;
+                left: -360px;
+                transition: left 0.3s ease-in;
+                z-index: 2;
             }
         }
 
-        .sidebar-container-active {
-            display: block;
-            position: fixed;
-            z-index: 2;
-            
+        .sidebar-container-open {           
             .sidebar {
+                position: absolute;
+                left: 0;
+                z-index: 2;
+                transition: left 0.3s ease-in-out;
+
                 .top-container {
                     .title {
                         text-overflow: ellipsis;
@@ -134,19 +126,6 @@
                         overflow: hidden;
                     }
                 }
-
-                animation: expand 0.3s ease-in;
-            }
-        }
-
-        @keyframes expand {
-            0% {
-                width: 0;
-                opacity: 0;
-            }
-            100% {
-                width: 100%;
-                opacity: 1;
             }
         }
 
