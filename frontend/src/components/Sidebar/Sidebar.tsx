@@ -58,8 +58,8 @@ export const Sidebar = ({activeChatIndex, setActiveChatIndex, isSidebarOpen, set
         <div className="container">
             <div className="top-container">
             <h1 className="title">ChatBot - Poli</h1>
-            <button className="hamburguer-button" onClick={toggleSidebar}>
-                <Icon.Hamburguer />
+            <button className="close-button" onClick={toggleSidebar}>
+                <Icon.Close />
             </button>
             </div>
             <button className="add-button" onClick={addNewChat}>

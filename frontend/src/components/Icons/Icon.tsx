@@ -1,4 +1,3 @@
-import React, { ReactElement } from "react";
 import { AddIcon } from "./AddIcon";
 import { EditIcon } from "./EditIcon";
 import { CheckIcon } from "./CheckIcon";
@@ -8,6 +7,7 @@ import { InfoIcon } from "./InfoIcon";
 import { SendIcon } from "./SendIcon";
 import { WarnIcon } from "./WarnIcon";
 import { CopyIcon } from "./CopyIcon";
+import { CloseIcon } from "./CloseIcon";
 
 export namespace Icon {
     export const Add = AddIcon;
@@ -19,4 +19,5 @@ export namespace Icon {
     export const Send = SendIcon;
     export const Warn = WarnIcon;
     export const Copy = CopyIcon;
+    export const Close = CloseIcon;
 }

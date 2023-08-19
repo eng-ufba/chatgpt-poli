@@ -21,16 +21,8 @@
                 line-height: normal;
             }
     
-            .hamburguer-button {
-                cursor: pointer;
-    
-                .hamburguer-icon {
-                    height: 24px;
-                    width: 24px;
-                    path {
-                        fill: #C4C5D0;
-                    }
-                }
+            .close-button {
+                display: none;
             }
         }
     
@@ -175,6 +167,30 @@
                 font-weight: 400;
                 line-height: normal;
                 text-decoration: underline;
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        .container {    
+            .top-container {        
+                .close-button {
+                    cursor: pointer;
+                    display: block;
+                    transition: 0.3s;
+        
+                    .close-icon {
+                        height: 24px;
+                        width: 24px;
+                        --primary-icon-color: #C4C5D0;
+                    }
+
+                    &:hover {
+                        .close-icon {    
+                            --primary-icon-color: white;
+                        }
+                    }
+                }
             }
         }
     }

@@ -141,12 +141,17 @@
     
             .hamburguer-button {
                 cursor: pointer;
+                transition: 0.3s;
     
                 .hamburguer-icon {
                     height: 24px;
                     width: 24px;
-                    path {
-                        fill: #C4C5D0;
+                    --primary-icon-color: #C4C5D0;
+                }
+
+                &:hover {
+                    .hamburguer-icon {
+                        --primary-icon-color: white;
                     }
                 }
             }

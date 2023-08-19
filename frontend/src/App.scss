@@ -43,3 +43,7 @@ h1, h2, h3, h4, h5, h6, p {
     transition: 0.3s;
     background: #555;
 }
+
+html {
+    scroll-behavior: smooth;
+}
