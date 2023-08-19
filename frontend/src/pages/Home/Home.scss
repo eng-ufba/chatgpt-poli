@@ -8,13 +8,17 @@
 
     .chat {
         width: calc(100% - 260px - 32px);
-        padding: 20px 40px 0 40px;
+        padding: 20px 4px 20px 40px;
+        max-height: calc(100vh - 40px);
 
         .container {
+            padding-right: 40px;
+            overflow-y: auto;
             height: 100%;
             position: relative;
 
             .messages-container {
+                min-height: calc(100% - 54px);
 
                 .question-container {
                     display: flex;
@@ -54,7 +58,7 @@
 
             .bottom-container {
                 bottom: 20px;
-                position: absolute;
+                // position: absolute;
                 display: flex;
                 gap: 24px;
                 width: 100%;
@@ -159,9 +163,10 @@
 
         .chat {
             width: auto;
-            padding: 20px 15px;
+            padding: 20px 4px 20px 15px;
 
             .container {
+                padding-right: 15px;
                 height: calc(100% - 125.6px);
             }
         }

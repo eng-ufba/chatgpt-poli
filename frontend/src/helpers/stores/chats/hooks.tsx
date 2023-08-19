@@ -9,8 +9,8 @@ const initialChats = [
     {
         id: '1',
         title: 'Chat 1',
-        questions: ['Qual a velocidade da luz ?'],
-        answers: ['300000km por segundo']
+        questions: ['Qual a velocidade da luz ?', 'Qual a velocidade da luz ?', 'Qual a velocidade da luz ?', 'Qual a velocidade da luz ?', 'Qual a velocidade da luz ?', 'Qual a velocidade da luz ?', 'Qual a velocidade da luz ?', 'Qual a velocidade da luz ?'],
+        answers: ['300000km por segundo', '300000km por segundo', '300000km por segundo', '300000km por segundo', '300000km por segundo', '300000km por segundo', '300000km por segundo', '300000km por segundo']
     },
     {
         id: '2',

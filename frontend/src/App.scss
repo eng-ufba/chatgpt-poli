@@ -20,3 +20,26 @@ h1, h2, h3, h4, h5, h6, p {
 .App {
     height: 100vh;
 }
+
+/* Designing for scroll-bar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+     
+/* Track */
+::-webkit-scrollbar-track {
+    background: gainsboro;
+    border-radius: 5px;
+}
+     
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 5px;
+}
+     
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    transition: 0.3s;
+    background: #555;
+}
