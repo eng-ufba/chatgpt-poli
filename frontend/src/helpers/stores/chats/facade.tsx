@@ -1,8 +1,11 @@
 import { isUndefined } from "lodash";
-import React from "react";
-import { useState } from "react";
 import { generateUniqueId } from "../../utils";
 import { Chat, ChatStore, DispatchChat, UpdatableChat } from "./types";
+
+const saveChatsOnStorage = (chats: Array<Chat>): void => {
+    const rawChats = JSON.stringify(chats);
+    localStorage.setItem('chats', rawChats)
+}
 
 export const chatsStore = (chats: Array<Chat>, dispatch: DispatchChat): ChatStore => {
     const getAll = (): Array<Chat> => {
@@ -24,20 +27,33 @@ export const chatsStore = (chats: Array<Chat>, dispatch: DispatchChat): ChatStor
             ...chat,
             id: generateUniqueId()
         };
-        dispatch((previousChats) => [...previousChats, addedChat]);
+        dispatch((previousChats) => {
+            const chats =  [...previousChats, addedChat];
+            saveChatsOnStorage(chats);
+            return chats;
+        });
     };
 
     const remove = (id: string): void => {
-        dispatch((previousChats) => previousChats.filter(chat => chat.id !== id));
+        dispatch((previousChats) => {
+            const chats = previousChats.filter(chat => chat.id !== id);
+            saveChatsOnStorage(chats);
+            return chats;
+        });
     };
     
     const update = (updatedChat: UpdatableChat): void => {
-        dispatch((previousChats) => previousChats.map(chat => {
-            if (chat.id === updatedChat.id) {
-                return {...chat, ...updatedChat };
-            }
-            return chat;
-        }))
+        dispatch((previousChats) => {
+            const chats = previousChats.map(chat => {
+                if (chat.id === updatedChat.id) {
+                    return {...chat, ...updatedChat };
+                }
+                return chat;
+            });
+
+            saveChatsOnStorage(chats);
+            return chats;
+        })
     };
 
     return {

@@ -8,6 +8,7 @@ import { SendIcon } from "./SendIcon";
 import { WarnIcon } from "./WarnIcon";
 import { CopyIcon } from "./CopyIcon";
 import { CloseIcon } from "./CloseIcon";
+import { ArrowDownIcon } from "./ArrowDownIcon";
 
 export namespace Icon {
     export const Add = AddIcon;
@@ -20,4 +21,5 @@ export namespace Icon {
     export const Warn = WarnIcon;
     export const Copy = CopyIcon;
     export const Close = CloseIcon;
+    export const ArrowDown = ArrowDownIcon;
 }

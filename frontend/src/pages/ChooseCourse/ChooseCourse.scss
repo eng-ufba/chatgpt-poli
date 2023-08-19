@@ -1,0 +1,122 @@
+.choose-course {
+    background: rgba(13, 58, 106, 0.10);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .header {
+        display: flex;
+        margin: 0.5rem 0;
+
+        .title {
+            color: #23262F;
+            text-align: center;
+            font-feature-settings: 'clig' off, 'liga' off;
+            /* Heading/H4 */
+            font-family: Inter, sans-serif;
+            font-size: 1.5rem;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 2rem; /* 133.333% */
+        }
+    }
+
+    .description {
+        color: #87898E;
+        font-feature-settings: 'clig' off, 'liga' off;
+        font-family: Inter;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 1.5rem; /* 150% */
+    }
+
+    .course-container {
+        margin: 1.69rem 0 0 0;
+        display: block;
+
+        label {
+            color: #23262F;
+            display: block;
+            margin: 0.125rem;
+            font-feature-settings: 'clig' off, 'liga' off;
+            /* Title / Medium */
+            font-family: Inter;
+            font-size: 1rem;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 1.5rem; /* 150% */
+            width: 100%;
+        }
+
+        select {
+            border-radius: 0.5rem;
+            border: 2px solid #DFDFE6;
+            background: var(--color-light-light, #FCFCFD); 
+            padding: 1rem; 
+            width: 100%;
+
+            option * {
+                padding: 1rem; 
+                height: 200px;
+            }
+        }
+    }
+
+    .checkbox-container {
+        display: flex;
+        margin: 0.5rem 0 3.4rem 0;
+        z-index: 1;
+
+        input {
+
+        }
+
+        .checkbox-text {
+            color: #87898E;
+            font-feature-settings: 'clig' off, 'liga' off;
+            font-family: Inter;
+            font-size: 1rem;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 1.5rem; /* 150% */
+        }
+    }
+
+    .button-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 1rem 0;
+
+        .save-button {
+            border-radius: 0.5rem;
+            background-color: var(--primary-blue);
+            cursor: pointer;
+            display: flex;
+            padding: 1.25rem 5.78rem;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            flex-shrink: 0;
+            color: var(--color-light-light, #FCFCFD);
+            font-feature-settings: 'clig' off, 'liga' off;
+            /* Button / Medium / Normal */
+            font-family: Inter, sans-serif;
+            font-size: 1rem;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 1rem; /* 100% */
+            transition: 0.3s;
+            opacity: 0.8;
+
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
+}
