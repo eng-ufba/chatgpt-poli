@@ -2,6 +2,10 @@
     display: flex;
     width: 100%;
 
+    .navbar {
+        display: none;
+    }
+
     .chat {
         width: calc(100% - 260px - 32px);
         padding: 20px 40px 0 40px;
@@ -91,6 +95,86 @@
                         width: 30px;
                     }
                 }
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        display: block;
+
+        .sidebar-container {
+            .sidebar {
+                animation: colapse 0.3s ease-in;
+            }
+
+            display: none;
+        }
+
+        @keyframes colapse {
+            0% {
+                width: 100%;
+                opacity: 1;
+            }
+            100% {
+                width: 0;
+                opacity: 0;
+            }
+        }
+
+        .sidebar-container-active {
+            display: block;
+            position: fixed;
+            z-index: 2;
+            
+            .sidebar {
+                .top-container {
+                    .title {
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        overflow: hidden;
+                    }
+                }
+
+                animation: expand 0.3s ease-in;
+            }
+        }
+
+        @keyframes expand {
+            0% {
+                width: 0;
+                opacity: 0;
+            }
+            100% {
+                width: 100%;
+                opacity: 1;
+            }
+        }
+
+        .navbar {
+            display: flex;
+            gap: 36px;
+            padding: 26px;
+            background-color: var(--primary-blue);
+    
+            .hamburguer-button {
+                cursor: pointer;
+    
+                .hamburguer-icon {
+                    height: 24px;
+                    width: 24px;
+                    path {
+                        fill: #C4C5D0;
+                    }
+                }
+            }
+    
+            .title {
+                color: #FFF;
+                font-family: Poppins, sans-serif;
+                font-size: 1.375rem;
+                font-style: normal;
+                font-weight: 700;
+                line-height: normal;
             }
         }
     }

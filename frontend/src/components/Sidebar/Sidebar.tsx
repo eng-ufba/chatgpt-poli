@@ -6,10 +6,12 @@ import './Sidebar.scss';
 
 type SidebarProps = {
     activeChatIndex: number,
-    setActiveChatIndex: React.Dispatch<React.SetStateAction<number>>
+    setActiveChatIndex: React.Dispatch<React.SetStateAction<number>>,
+    isSidebarOpen: boolean,
+    setIsSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export const Sidebar = ({activeChatIndex, setActiveChatIndex}: SidebarProps): ReactElement => {
+export const Sidebar = ({activeChatIndex, setActiveChatIndex, isSidebarOpen, setIsSidebarOpen}: SidebarProps): ReactElement => {
     const [page, setPage] = [useContext(ContextPage), useContext(SetContextPage)];
     const chatsStore = useContext(ContextChats);
     const chats = chatsStore.getAll();
@@ -43,13 +45,17 @@ export const Sidebar = ({activeChatIndex, setActiveChatIndex}: SidebarProps): Re
         return activeChatIndex !== index;
     }
 
+    const toggleSidebar = (): void => {
+        setIsSidebarOpen((previousValue) => !previousValue);
+    }
+
     return <div className="sidebar">
         <div className="container">
             <div className="top-container">
-        <h1 className="title">ChatBot - Poli</h1>
-        <button className="hamburguer-button">
-            <Icon.Hamburguer />
-        </button>
+            <h1 className="title">ChatBot - Poli</h1>
+            <button className="hamburguer-button" onClick={toggleSidebar}>
+                <Icon.Hamburguer />
+            </button>
             </div>
             <button className="add-button" onClick={addNewChat}>
             <Icon.Add />

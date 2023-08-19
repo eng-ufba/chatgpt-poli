@@ -8,6 +8,7 @@ import { isUndefined } from "lodash";
 
 export const Home  = (): ReactElement => {
     const [page, setPage] = [useContext(ContextPage), useContext(SetContextPage)];
+    const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(() => false);
     const [activeChatIndex, setActiveChatIndex] = useState<number>(() => 0);
     const chatsStore = useContext(ContextChats);
     const chats = chatsStore.getAll();
@@ -60,8 +61,29 @@ export const Home  = (): ReactElement => {
         navigator.clipboard.writeText(answer);
     }
 
+    const getSidebarContainerClass = (): string => {
+        return isSidebarOpen ? 'sidebar-container-active' : 'sidebar-container';
+    }
+
+    const toggleSidebar = (): void => {
+        setIsSidebarOpen((previousValue) => !previousValue);
+    }
+
     return <div className="home">
-        <Sidebar activeChatIndex={activeChatIndex} setActiveChatIndex={setActiveChatIndex} />
+        <div className={getSidebarContainerClass()}>
+            <Sidebar 
+            activeChatIndex={activeChatIndex} 
+            setActiveChatIndex={setActiveChatIndex} 
+            isSidebarOpen={isSidebarOpen} 
+            setIsSidebarOpen={setIsSidebarOpen} 
+            />
+        </div>
+        <div className="navbar">
+            <button className="hamburguer-button" onClick={toggleSidebar}>
+            <Icon.Hamburguer />
+            </button>
+            <h2 className="title">ChatBot - Poli</h2>
+        </div>
         <div className="chat">
             <div className="container">
                 <div className="messages-container">
