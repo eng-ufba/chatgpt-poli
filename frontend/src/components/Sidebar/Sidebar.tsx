@@ -49,6 +49,11 @@ export const Sidebar = ({activeChatIndex, setActiveChatIndex, isSidebarOpen, set
         setIsSidebarOpen((previousValue) => !previousValue);
     }
 
+    const onChatClick = (index: number): void => {
+        setActiveChatIndex(index);
+        setIsSidebarOpen(() => false);
+    }
+
     return <div className="sidebar">
         <div className="container">
             <div className="top-container">
@@ -65,8 +70,8 @@ export const Sidebar = ({activeChatIndex, setActiveChatIndex, isSidebarOpen, set
             </button>
             <div className="line" aria-hidden="true"></div>
             <div className="middle-container">
-        {chats.map((chat, index) => {
-            return <div className={getChatContainerClass(index)} key={'chat-'+ chat.id} onClick={() => setActiveChatIndex(index)}>
+            {chats.map((chat, index) => {
+            return <div className={getChatContainerClass(index)} key={'chat-'+ chat.id} onClick={() => onChatClick(index)}>
             <h3 className="text" contentEditable={isEditingTitleList[index]}>{chat.title}</h3>
             <button hidden={isToHideIcon(index)} className="edit-button" onClick={() => editChatTitle(index)}>
                 <Icon.Edit />

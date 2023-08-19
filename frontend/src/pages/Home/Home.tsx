@@ -61,16 +61,12 @@ export const Home  = (): ReactElement => {
         navigator.clipboard.writeText(answer);
     }
 
-    const getSidebarContainerClass = (): string => {
-        return isSidebarOpen ? 'sidebar-container-open' : 'sidebar-container';
-    }
-
     const toggleSidebar = (): void => {
         setIsSidebarOpen((previousValue) => !previousValue);
     }
 
     return <div className="home">
-        <div className={getSidebarContainerClass()}>
+        <div className={isSidebarOpen ? 'sidebar-container-open' : 'sidebar-container'}>
             <Sidebar 
             activeChatIndex={activeChatIndex} 
             setActiveChatIndex={setActiveChatIndex} 
@@ -78,13 +74,13 @@ export const Home  = (): ReactElement => {
             setIsSidebarOpen={setIsSidebarOpen} 
             />
         </div>
-        <div className="navbar">
+        <div className={isSidebarOpen ? 'navbar content-blur' : 'navbar content-normal'}>
             <button className="hamburguer-button" onClick={toggleSidebar}>
             <Icon.Hamburguer />
             </button>
             <h2 className="title">ChatBot - Poli</h2>
         </div>
-        <div className="chat">
+        <div className={isSidebarOpen ? 'chat content-blur' : 'chat content-normal'} >
             <div className="container">
                 <div className="messages-container">
                 {activeChat && activeChat.questions.map((question, index) => {

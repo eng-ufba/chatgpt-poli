@@ -156,5 +156,42 @@
                 line-height: normal;
             }
         }
+
+        .chat {
+            width: auto;
+            padding: 20px 15px;
+
+            .container {
+                height: calc(100% - 125.6px);
+            }
+        }
+
+        .content-blur, .content-normal {
+            animation: removeBlur 0.3s ease-in;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes removeBlur {
+            from {
+                filter: blur(5px);
+            }
+            to {
+                filter: blur(0px);
+            }
+        }
+
+        .content-blur {
+            animation: applyBlur 0.3s ease-in;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes applyBlur {
+            from {
+                filter: blur(0px);
+            }
+            to {
+                filter: blur(5px);
+            }
+        }
     }
 }
