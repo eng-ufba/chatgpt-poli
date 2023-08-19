@@ -18,7 +18,7 @@
             position: relative;
 
             .messages-container {
-                min-height: calc(100% - 54px);
+                min-height: calc(100% - 54px - 20px);
 
                 .question-container {
                     display: flex;
