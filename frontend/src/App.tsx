@@ -6,9 +6,18 @@ import { ContextPage, PAGE_VALUE, Page, SetContextPage } from './helpers/page-ma
 import './App.scss';
 import { ChatsStore } from './helpers/stores/chats/ChatsStore';
 import { ChooseCourse } from './pages/ChooseCourse/ChooseCourse';
+import { isNull } from 'lodash-es';
 
 export const App = (): ReactElement => {
-  const [page, setPage] = useState<Page>(() => PAGE_VALUE.CHOOSE_COURSE);
+  const [page, setPage] = useState<Page>(() => {
+        const rawCourse = localStorage.getItem('course');
+
+        if (isNull(rawCourse)) {
+          return  PAGE_VALUE.CHOOSE_COURSE;
+        }
+        return PAGE_VALUE.HOME;
+      }
+    );
 
   const CurrentPage = (): ReactElement => {
     switch(page) {

@@ -1,6 +1,6 @@
 import { ReactElement, useContext, useState } from "react";
 import { Icon } from "../Icons/Icon";
-import { ContextPage, SetContextPage } from "../../helpers/page-manager/pageManager";
+import { ContextPage, PAGE_VALUE, SetContextPage } from "../../helpers/page-manager/pageManager";
 import { ContextChats } from "../../helpers/stores/chats";
 import './Sidebar.scss';
 
@@ -54,6 +54,14 @@ export const Sidebar = ({activeChatIndex, setActiveChatIndex, isSidebarOpen, set
         setIsSidebarOpen(() => false);
     }
 
+    const openTermosPage = (): void => {
+        setPage(PAGE_VALUE.TERMOS_DE_USO);
+    }
+
+    const openPoliticaPage = (): void => {
+        setPage(PAGE_VALUE.POLITICA_DE_PRIVACIDADE);
+    }
+
     return <div className="sidebar">
         <div className="container">
             <div className="top-container">
@@ -83,8 +91,8 @@ export const Sidebar = ({activeChatIndex, setActiveChatIndex, isSidebarOpen, set
         })}
             </div>
             <div className="links">
-        <a>Termos de uso</a>
-        <a>Política de privacidade</a>
+                <a onClick={openTermosPage}>Termos de uso</a>
+                <a onClick={openPoliticaPage}>Política de privacidade</a>
             </div>
         </div>
     </div>

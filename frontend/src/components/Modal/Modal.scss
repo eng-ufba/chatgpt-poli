@@ -7,6 +7,7 @@
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     animation: fadeIn 1s;
     animation-fill-mode: forwards;
+    max-width: 544px;
     
     @keyframes fadeIn {
         from {
@@ -20,5 +21,6 @@
     @media (max-width: 768px) {
         padding: 1rem;
         margin: 0 0.5rem;
+        max-width: 340px;
     }
 }
