@@ -67,14 +67,19 @@
 
     .checkbox-container {
         display: flex;
-        margin: 0.5rem 0 3.4rem 0;
+        padding: 0.5rem 0 3.4rem;
         z-index: 1;
 
         input {
+            cursor: pointer;
+        }
 
+        input[type="checkbox"] {
+            accent-color: var(--primary-blue);
         }
 
         .checkbox-text {
+            cursor: pointer;
             color: #87898E;
             font-feature-settings: 'clig' off, 'liga' off;
             font-family: Inter;
@@ -82,7 +87,23 @@
             font-style: normal;
             font-weight: 400;
             line-height: 1.5rem; /* 150% */
+
+            .link {
+                cursor: pointer;
+                text-decoration: underline;
+            }
         }
+    }
+
+    .error-message {
+        text-align: center;
+        color: var(--primary-red);
+        font-feature-settings: 'clig' off, 'liga' off;
+        font-family: Inter;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 1.5rem; /* 150% */
     }
 
     .button-container {
@@ -117,6 +138,13 @@
             &:hover {
                 opacity: 1;
             }
+        }
+    }
+
+    @media (max-width: 768px) {
+        .checkbox-container {
+            display: flex;
+            gap: 0.5rem;
         }
     }
 }

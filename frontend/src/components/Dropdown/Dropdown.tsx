@@ -12,6 +12,7 @@ type DropdownProps = {
 export const Dropdown = ({options, selected, setSelected, clickOutsideEmit}: DropdownProps): ReactElement => {
     const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(() => false);
     const [isFocus, setIsFocus] = useState<boolean>(() => false);
+    const [isFirstClick, setIsFirstClick] = useState<boolean>(() => false);
 
     const toggleDropdown = (): void => {
         setIsDropdownOpen((previousValue) => !previousValue);
@@ -31,9 +32,9 @@ export const Dropdown = ({options, selected, setSelected, clickOutsideEmit}: Dro
     }
 
     useEffect(() => {
-        if (isFocus === false) {
-            setIsDropdownOpen(() => false);
-        }
+        // if (isFocus === false && isDropdownOpen) {
+        //    setIsDropdownOpen(() => false);
+        // }
     }, [clickOutsideEmit]);
 
     return <div className="dropdown" onMouseLeave={disableFocus} onMouseEnter={enabledFocus}>
