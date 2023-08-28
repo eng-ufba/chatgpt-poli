@@ -55,6 +55,7 @@ export const Sidebar = ({activeChatIndex, setActiveChatIndex, isSidebarOpen, set
     }
 
     const openChooseCoursePage = (): void => {
+        localStorage.removeItem('course')
         setPage(PAGE_VALUE.CHOOSE_COURSE);
     }
 
