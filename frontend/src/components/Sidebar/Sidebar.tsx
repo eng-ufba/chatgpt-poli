@@ -54,6 +54,10 @@ export const Sidebar = ({activeChatIndex, setActiveChatIndex, isSidebarOpen, set
         setIsSidebarOpen(() => false);
     }
 
+    const openChooseCoursePage = (): void => {
+        setPage(PAGE_VALUE.CHOOSE_COURSE);
+    }
+
     const openTermosPage = (): void => {
         setPage(PAGE_VALUE.TERMOS_DE_USO);
     }
@@ -74,6 +78,12 @@ export const Sidebar = ({activeChatIndex, setActiveChatIndex, isSidebarOpen, set
             <Icon.Add />
             <h3 className="text">
                 Novo Chat
+            </h3>
+            </button>
+            <button className="settings-button" onClick={openChooseCoursePage}>
+            <Icon.Settings />
+            <h3 className="text">
+                Mudar Curso
             </h3>
             </button>
             <div className="line" aria-hidden="true"></div>

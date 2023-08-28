@@ -9,6 +9,7 @@ import { WarnIcon } from "./WarnIcon";
 import { CopyIcon } from "./CopyIcon";
 import { CloseIcon } from "./CloseIcon";
 import { ArrowDownIcon } from "./ArrowDownIcon";
+import { SettingsIcon } from "./SettingsIcon";
 
 export namespace Icon {
     export const Add = AddIcon;
@@ -22,4 +23,5 @@ export namespace Icon {
     export const Copy = CopyIcon;
     export const Close = CloseIcon;
     export const ArrowDown = ArrowDownIcon;
+    export const Settings = SettingsIcon;
 }
