@@ -9,9 +9,11 @@ type SidebarProps = {
     setActiveChatIndex: React.Dispatch<React.SetStateAction<number>>,
     isSidebarOpen: boolean,
     setIsSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>
+    setIsToShowDeleteModal: React.Dispatch<React.SetStateAction<boolean>>;
+    setChatID: React.Dispatch<React.SetStateAction<null | string>>
 }
 
-export const Sidebar = ({activeChatIndex, setActiveChatIndex, isSidebarOpen, setIsSidebarOpen}: SidebarProps): ReactElement => {
+export const Sidebar = ({activeChatIndex, setActiveChatIndex, setIsSidebarOpen, setIsToShowDeleteModal, setChatID}: SidebarProps): ReactElement => {
     const [page, setPage] = [useContext(ContextPage), useContext(SetContextPage)];
     const chatsStore = useContext(ContextChats);
     const chats = chatsStore.getAll();
@@ -37,8 +39,8 @@ export const Sidebar = ({activeChatIndex, setActiveChatIndex, isSidebarOpen, set
     }
 
     const removeChat = (id: string): void => {
-        chatsStore.remove(id);
-        setActiveChatIndex(0);
+        setIsToShowDeleteModal(() => true);
+        setChatID(id);
     }
 
     const isToHideIcon = (index: number): boolean => {

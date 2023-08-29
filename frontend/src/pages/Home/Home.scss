@@ -103,6 +103,134 @@
         }
     }
 
+    .delete-modal {
+        position:fixed;
+        left: calc(50% - 277px);
+        top: calc(50% - 86.5px);
+        width: 30rem;
+
+        .modal {
+            width: 100%;
+        }
+
+        .header {
+            display: flex;
+            gap: 16px;
+
+            .icon-container {
+                background-color: #FFEBEB;
+                border-radius: 100%;
+                height: 45px;
+                width: 45px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .delete-icon {
+                    height: 24px;
+                    width: 24;
+                    --primary-icon-color: #E53535;
+                }
+            }
+
+            .text {
+                .title {
+                    color: #23262F;
+                    font-feature-settings: 'clig' off, 'liga' off;
+                    /* Body */
+                    font-family: Inter, sans-serif;
+                    font-size: 1rem;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 1.5rem; /* 150% */
+                }
+
+                .description {
+                    color: var(--color-dark-dark-2, #87898E);
+                    font-feature-settings: 'clig' off, 'liga' off;
+                    /* Small Caption/ Medium */
+                    font-family: Inter;
+                    font-size: 0.875rem;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 1rem; /* 114.286% */
+                }
+            }
+        }
+
+        .buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            align-items: center;
+            margin-top: 1.5rem;
+
+            .delete-button, .cancel-button {
+                cursor: pointer;
+                border-radius: 0.5rem;
+                width: calc(50%);
+                height: 3.5rem;
+                padding: 1.25rem 0rem;
+                justify-content: center;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .delete-button {
+                background-color: #E53535;
+                color: var(--color-light-light, #FCFCFD);
+                font-feature-settings: 'clig' off, 'liga' off;
+                /* Button / Medium / Normal */
+                font-family: Inter;
+                font-size: 1rem;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 1rem; /* 100% */
+            }
+
+            .cancel-button {
+                background: var(--color-light-light-2, #F1F1F1);
+                color: var(--color-dark-dark, #23262F);
+                font-feature-settings: 'clig' off, 'liga' off;
+
+                /* Button / Medium / Normal */
+                font-family: Inter;
+                font-size: 1rem;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 1rem; /* 100% */
+            }
+        }
+    }
+
+    .content-blur, .content-normal {
+        animation: removeBlur 0.3s ease-in;
+        animation-fill-mode: forwards;
+    }
+
+    @keyframes removeBlur {
+        from {
+            filter: blur(5px);
+        }
+        to {
+            filter: blur(0px);
+        }
+    }
+
+    .content-blur {
+        animation: applyBlur 0.3s ease-in;
+        animation-fill-mode: forwards;
+    }
+
+    @keyframes applyBlur {
+        from {
+            filter: blur(0px);
+        }
+        to {
+            filter: blur(5px);
+        }
+    }
+
     @media (max-width: 768px) {
         display: block;
 
@@ -176,31 +304,95 @@
             }
         }
 
-        .content-blur, .content-normal {
-            animation: removeBlur 0.3s ease-in;
-            animation-fill-mode: forwards;
-        }
-
-        @keyframes removeBlur {
-            from {
-                filter: blur(5px);
+        .delete-modal {
+            position:fixed;
+            left: calc(50% - 180px);
+            top: calc(50% - 86.5px);
+    
+            .modal {
+                width: 100%;
+                width: 312px;
             }
-            to {
-                filter: blur(0px);
+    
+            .header {
+                display: flex;
+                gap: 16px;
+    
+                .icon-container {
+                    display: none;
+    
+                    .delete-icon {
+                        display: none;
+                    }
+                }
+    
+                .text {
+                    .title {
+                        color: #23262F;
+                        font-feature-settings: 'clig' off, 'liga' off;
+                        /* Body */
+                        font-family: Inter, sans-serif;
+                        font-size: 1rem;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: 1.5rem; /* 150% */
+                    }
+    
+                    .description {
+                        color: var(--color-dark-dark-2, #87898E);
+                        font-feature-settings: 'clig' off, 'liga' off;
+                        /* Small Caption/ Medium */
+                        font-family: Inter;
+                        font-size: 0.875rem;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: 1rem; /* 114.286% */
+                    }
+                }
             }
-        }
-
-        .content-blur {
-            animation: applyBlur 0.3s ease-in;
-            animation-fill-mode: forwards;
-        }
-
-        @keyframes applyBlur {
-            from {
-                filter: blur(0px);
-            }
-            to {
-                filter: blur(5px);
+    
+            .buttons {
+                display: flex;
+                gap: 16px;
+                justify-content: center;
+                align-items: center;
+                margin-top: 1.5rem;
+    
+                .delete-button, .cancel-button {
+                    cursor: pointer;
+                    border-radius: 0.5rem;
+                    width: calc(50%);
+                    height: 3.5rem;
+                    padding: 1.25rem 0rem;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 1rem;
+                }
+    
+                .delete-button {
+                    background-color: #E53535;
+                    color: var(--color-light-light, #FCFCFD);
+                    font-feature-settings: 'clig' off, 'liga' off;
+                    /* Button / Medium / Normal */
+                    font-family: Inter;
+                    font-size: 1rem;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 1rem; /* 100% */
+                }
+    
+                .cancel-button {
+                    background: var(--color-light-light-2, #F1F1F1);
+                    color: var(--color-dark-dark, #23262F);
+                    font-feature-settings: 'clig' off, 'liga' off;
+    
+                    /* Button / Medium / Normal */
+                    font-family: Inter;
+                    font-size: 1rem;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 1rem; /* 100% */
+                }
             }
         }
     }
