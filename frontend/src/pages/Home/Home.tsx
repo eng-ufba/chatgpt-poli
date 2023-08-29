@@ -16,7 +16,9 @@ export const Home  = (): ReactElement => {
     const activeChat: Chat | undefined = chats[activeChatIndex];
     const textInput = useRef<HTMLInputElement>(null);
     const [isToShowDeleteModal, setIsToShowDeleteModal] = useState<boolean>(() => false);
+    const [isToShowEditModal, setIsToShowEditModal] = useState<boolean>(() => false);
     const [chatID, setChatID] = useState<null | string>(() => null);
+    const title = useRef<HTMLInputElement>(null);
 
     const cleanTextInput = (): void => {
         if(textInput.current) {
@@ -48,7 +50,7 @@ export const Home  = (): ReactElement => {
             const lastPosition = chats.length;
 
             chatsStore.add({
-                title: text.length < 18 ? text : text.slice(0, 18),
+                title: text.length < 15 ? text : text.slice(0, 15) + '...',
                 questions: [text],
                 answers: [text]
             });
@@ -60,7 +62,6 @@ export const Home  = (): ReactElement => {
 
     const copyAnswer = (index: number): void => {
         const answer = activeChat.answers[index];
-        console.log(answer);
         navigator.clipboard.writeText(answer);
     }
 
@@ -71,6 +72,7 @@ export const Home  = (): ReactElement => {
     const clickOutside = (): void => {
         clickOutsideSidebar();
         clickOutsideDeleteModal();
+        closeEditModal();
     }
 
     const clickOutsideSidebar = (): void => {
@@ -89,6 +91,10 @@ export const Home  = (): ReactElement => {
         setIsToShowDeleteModal(() => false);
     }
 
+    const closeEditModal = (): void => {
+        setIsToShowEditModal(() => false);
+    }
+
     const deleteChat = (): void => {
         if(isNull(chatID)) {
             console.warn('Unable to delete this chat');
@@ -99,8 +105,26 @@ export const Home  = (): ReactElement => {
         }
     }
 
+    const changeChatTitle = (): void => {
+        const titleValue = title.current?.value;
+
+        if (isNull(chatID)) {
+            console.warn('Unable to update this chat title');
+        } 
+        else if(isUndefined(titleValue)) {
+            console.warn('Unable to update this chat title');
+        }
+        else {
+            chatsStore.update({
+                id: chatID,
+                title: titleValue
+            });
+            closeEditModal();
+        }
+    }
+
     const getContentClassName = (): string => {
-        if (isSidebarOpen || isToShowDeleteModal) {
+        if (isSidebarOpen || isToShowDeleteModal || isToShowEditModal) {
             return 'chat content-blur';
         }
         return 'chat content-normal';
@@ -125,6 +149,7 @@ export const Home  = (): ReactElement => {
             setIsSidebarOpen={setIsSidebarOpen} 
             setIsToShowDeleteModal={setIsToShowDeleteModal}
             setChatID={setChatID}
+            setIsToShowEditModal={setIsToShowEditModal}
             />
         </div>
         <div className={isSidebarOpen ? 'navbar content-blur' : 'navbar content-normal'} onClick={clickOutside}>
@@ -174,6 +199,20 @@ export const Home  = (): ReactElement => {
                 <div className="buttons">
                     <button className="delete-button" onClick={deleteChat}>Deletar</button>
                     <button className="cancel-button" onClick={closeDeleteModal}>Cancelar</button>
+                </div>
+            </Modal>
+        </div>
+        <div className="edit-modal" hidden={!isToShowEditModal}>
+            <Modal>
+                <div className="header">
+                    <div className="text">
+                        <h1 className="title">Editar título do chat</h1>
+                        <input type="text" ref={title} defaultValue={getChatTitle()} />
+                    </div>
+                </div>
+                <div className="buttons">
+                    <button className="save-button" onClick={changeChatTitle}>Salvar</button>
+                    <button className="cancel-button" onClick={closeEditModal}>Cancelar</button>
                 </div>
             </Modal>
         </div>

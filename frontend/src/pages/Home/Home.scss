@@ -103,7 +103,7 @@
         }
     }
 
-    .delete-modal {
+    .delete-modal, .edit-modal {
         position:fixed;
         left: calc(50% - 277px);
         top: calc(50% - 86.5px);
@@ -178,6 +178,80 @@
 
             .delete-button {
                 background-color: #E53535;
+                color: var(--color-light-light, #FCFCFD);
+                font-feature-settings: 'clig' off, 'liga' off;
+                /* Button / Medium / Normal */
+                font-family: Inter;
+                font-size: 1rem;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 1rem; /* 100% */
+            }
+
+            .cancel-button {
+                background: var(--color-light-light-2, #F1F1F1);
+                color: var(--color-dark-dark, #23262F);
+                font-feature-settings: 'clig' off, 'liga' off;
+
+                /* Button / Medium / Normal */
+                font-family: Inter;
+                font-size: 1rem;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 1rem; /* 100% */
+            }
+        }
+    }
+
+    .edit-modal {
+        .header {
+            .icon-container {
+                background-color: var(--primary-blue);
+                border-radius: 100%;
+                height: 45px;
+                width: 45px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .edit-icon {
+                    height: 24px;
+                    width: 24;
+                    --primary-icon-color: white;
+                }
+            }
+
+            .text {
+                width: 100%;
+
+                .title {
+                    margin: 12px 0;
+                }
+
+                input {
+                    border-radius: 0.5rem;
+                    border: 2px solid #DFDFE6;
+                    background: var(--color-light-light, #FCFCFD); 
+                    padding: 1rem; 
+                    width: 100%;
+                }
+            }
+        }
+
+        .buttons {
+            .save-button, .cancel-button {
+                cursor: pointer;
+                border-radius: 0.5rem;
+                width: calc(50%);
+                height: 3.5rem;
+                padding: 1.25rem 0rem;
+                justify-content: center;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .save-button {
+                background-color: var(--primary-blue);
                 color: var(--color-light-light, #FCFCFD);
                 font-feature-settings: 'clig' off, 'liga' off;
                 /* Button / Medium / Normal */
@@ -304,7 +378,7 @@
             }
         }
 
-        .delete-modal {
+        .delete-modal, .edit-modal {
             position:fixed;
             left: calc(50% - 180px);
             top: calc(50% - 86.5px);

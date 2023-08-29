@@ -11,9 +11,10 @@ type SidebarProps = {
     setIsSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>
     setIsToShowDeleteModal: React.Dispatch<React.SetStateAction<boolean>>;
     setChatID: React.Dispatch<React.SetStateAction<null | string>>
+    setIsToShowEditModal: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export const Sidebar = ({activeChatIndex, setActiveChatIndex, setIsSidebarOpen, setIsToShowDeleteModal, setChatID}: SidebarProps): ReactElement => {
+export const Sidebar = ({activeChatIndex, setActiveChatIndex, setIsSidebarOpen, setIsToShowDeleteModal, setChatID, setIsToShowEditModal}: SidebarProps): ReactElement => {
     const [page, setPage] = [useContext(ContextPage), useContext(SetContextPage)];
     const chatsStore = useContext(ContextChats);
     const chats = chatsStore.getAll();
@@ -31,14 +32,14 @@ export const Sidebar = ({activeChatIndex, setActiveChatIndex, setIsSidebarOpen, 
         return `chat-container ${index === activeChatIndex ? 'chat-container-active' : ''}`;
     }
 
-    const editChatTitle = (index: number): void => {
-        console.log('EDIT');
-        setIsEditingTitleList((previousIsEditingTitleList) => {
-            return previousIsEditingTitleList.map((_, position) => index === position);
-        });
+    const editChatTitle = (id: string): void => {
+        setIsToShowDeleteModal(() => false);
+        setIsToShowEditModal(() => true);
+        setChatID(id);
     }
 
     const removeChat = (id: string): void => {
+        setIsToShowEditModal(() => false);
         setIsToShowDeleteModal(() => true);
         setChatID(id);
     }
@@ -94,7 +95,7 @@ export const Sidebar = ({activeChatIndex, setActiveChatIndex, setIsSidebarOpen, 
             {chats.map((chat, index) => {
             return <div className={getChatContainerClass(index)} key={'chat-'+ chat.id} onClick={() => onChatClick(index)}>
             <h3 className="text" contentEditable={isEditingTitleList[index]}>{chat.title}</h3>
-            <button hidden={isToHideIcon(index)} className="edit-button" onClick={() => editChatTitle(index)}>
+            <button hidden={isToHideIcon(index)} className="edit-button" onClick={() => editChatTitle(chat.id)}>
                 <Icon.Edit />
             </button>
             <button hidden={isToHideIcon(index)} className="delete-button" onClick={() => removeChat(chat.id)}>
