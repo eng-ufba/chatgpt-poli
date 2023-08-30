@@ -222,7 +222,7 @@ export const Home  = (): ReactElement => {
                     </div>
                 })}
                 </div>
-                <div className="loading-container">
+                <div className={"loading-container loading-container-" + (!isToShowLoading && 'hidden')}>
                     <Loading isToShow={isToShowLoading} />
                 </div>
                 <div className="bottom-container">
