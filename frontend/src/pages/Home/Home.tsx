@@ -4,8 +4,13 @@ import { Sidebar } from "../../components/Sidebar/Sidebar";
 import { Icon } from "../../components/Icons/Icon";
 import { Chat, ContextChats } from "../../helpers/stores/chats";
 import { Modal } from "../../components/Modal/Modal";
-import { isNull, isUndefined } from "lodash";
+import { isEmpty, isNull, isUndefined } from "lodash";
 import './Home.scss';
+
+type Snackbar = {
+    message: string;
+    type: 'success' | 'error' | 'warn' | 'hidden';
+}
 
 export const Home  = (): ReactElement => {
     const [page, setPage] = [useContext(ContextPage), useContext(SetContextPage)];
@@ -19,6 +24,7 @@ export const Home  = (): ReactElement => {
     const [isToShowEditModal, setIsToShowEditModal] = useState<boolean>(() => false);
     const [chatID, setChatID] = useState<null | string>(() => null);
     const title = useRef<HTMLInputElement>(null);
+    const [snackbar, setSnackbar] = useState<Snackbar>(() => ({ message: '', type: 'hidden' }));
 
     const cleanTextInput = (): void => {
         if(textInput.current) {
@@ -63,6 +69,7 @@ export const Home  = (): ReactElement => {
     const copyAnswer = (index: number): void => {
         const answer = activeChat.answers[index];
         navigator.clipboard.writeText(answer);
+        showCopyTextSnackbar();
     }
 
     const toggleSidebar = (): void => {
@@ -97,7 +104,8 @@ export const Home  = (): ReactElement => {
 
     const deleteChat = (): void => {
         if(isNull(chatID)) {
-            console.warn('Unable to delete this chat');
+            setSnackbar(() => ({ message: 'Não foi possível deletar esse chat', type: 'error' }));
+            closeSnackbar(2000);
         } else {
             chatsStore.remove(chatID);
             setActiveChatIndex(0);
@@ -109,10 +117,12 @@ export const Home  = (): ReactElement => {
         const titleValue = title.current?.value;
 
         if (isNull(chatID)) {
-            console.warn('Unable to update this chat title');
+            setSnackbar(() => ({ message: 'Não foi possível editar esse chat', type: 'error' }));
+            closeSnackbar(2000);
         } 
         else if(isUndefined(titleValue)) {
-            console.warn('Unable to update this chat title');
+            setSnackbar(() => ({ message: 'Não foi possível editar esse chat', type: 'error' }));
+            closeSnackbar(2000);
         }
         else {
             chatsStore.update({
@@ -138,6 +148,32 @@ export const Home  = (): ReactElement => {
         }
         
         return title;
+    }
+
+    const showCopyTextSnackbar = (): void => {
+        setSnackbar(() => ({ message: 'Texto copiado', type: 'success' }));
+        closeSnackbar(2000);
+    }
+
+    const closeSnackbar = (time?: number): void => {
+        if (time) {
+            setTimeout(() => {
+                closeSnackbar();
+            }, time);
+        }
+        else {
+            setSnackbar((previousSnackbar) => ({ message: previousSnackbar.message, type: 'hidden' }));
+        }
+    }
+
+    const getSnackbarClassName = (): string => {
+        if( isEmpty(snackbar.message)) {
+            return 'snackbar';
+        }
+        if (snackbar.type === 'hidden') {
+            return 'snackbar-hide'
+        }
+        return 'snackbar-visible';
     }
 
     return <div className="home">
@@ -215,6 +251,19 @@ export const Home  = (): ReactElement => {
                     <button className="cancel-button" onClick={closeEditModal}>Cancelar</button>
                 </div>
             </Modal>
+        </div>
+        <div className={getSnackbarClassName()} hidden={snackbar.type === 'hidden'}>
+            <div className="text-container">
+                <div className={'icon-container icon-container-' + snackbar.type}>
+                    {snackbar.type === 'success' ? <Icon.Success /> : null}
+                    {snackbar.type === 'warn' ? <Icon.Warn /> : null}
+                    {snackbar.type === 'error' ? <Icon.Error /> : null}
+                </div>
+                <h1 className={"message message-" + snackbar.type}>{snackbar.message}</h1>
+            </div>
+            <div className="button-container">
+            <button onClick={() => closeSnackbar()}><Icon.Close /></button>
+            </div>
         </div>
     </div>
 }

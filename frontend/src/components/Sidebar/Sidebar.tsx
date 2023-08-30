@@ -14,7 +14,7 @@ type SidebarProps = {
     setIsToShowEditModal: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export const Sidebar = ({activeChatIndex, setActiveChatIndex, setIsSidebarOpen, setIsToShowDeleteModal, setChatID, setIsToShowEditModal}: SidebarProps): ReactElement => {
+export const Sidebar = (props: SidebarProps): ReactElement => {
     const [page, setPage] = [useContext(ContextPage), useContext(SetContextPage)];
     const chatsStore = useContext(ContextChats);
     const chats = chatsStore.getAll();
@@ -29,32 +29,32 @@ export const Sidebar = ({activeChatIndex, setActiveChatIndex, setIsSidebarOpen, 
     }
 
     const getChatContainerClass = (index: number): string => {
-        return `chat-container ${index === activeChatIndex ? 'chat-container-active' : ''}`;
+        return `chat-container ${index === props.activeChatIndex ? 'chat-container-active' : ''}`;
     }
 
     const editChatTitle = (id: string): void => {
-        setIsToShowDeleteModal(() => false);
-        setIsToShowEditModal(() => true);
-        setChatID(id);
+        props.setIsToShowDeleteModal(() => false);
+        props.setIsToShowEditModal(() => true);
+        props.setChatID(id);
     }
 
     const removeChat = (id: string): void => {
-        setIsToShowEditModal(() => false);
-        setIsToShowDeleteModal(() => true);
-        setChatID(id);
+        props.setIsToShowEditModal(() => false);
+        props.setIsToShowDeleteModal(() => true);
+        props.setChatID(id);
     }
 
     const isToHideIcon = (index: number): boolean => {
-        return activeChatIndex !== index;
+        return props.activeChatIndex !== index;
     }
 
     const toggleSidebar = (): void => {
-        setIsSidebarOpen((previousValue) => !previousValue);
+        props.setIsSidebarOpen((previousValue) => !previousValue);
     }
 
     const onChatClick = (index: number): void => {
-        setActiveChatIndex(index);
-        setIsSidebarOpen(() => false);
+        props.setActiveChatIndex(index);
+        props.setIsSidebarOpen(() => false);
     }
 
     const openChooseCoursePage = (): void => {

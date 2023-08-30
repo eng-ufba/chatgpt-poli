@@ -10,6 +10,8 @@ import { CopyIcon } from "./CopyIcon";
 import { CloseIcon } from "./CloseIcon";
 import { ArrowDownIcon } from "./ArrowDownIcon";
 import { SettingsIcon } from "./SettingsIcon";
+import { SuccessIcon } from "./SuccessIcon";
+import { ErrorIcon } from "./ErrorIcon";
 
 export namespace Icon {
     export const Add = AddIcon;
@@ -24,4 +26,6 @@ export namespace Icon {
     export const Close = CloseIcon;
     export const ArrowDown = ArrowDownIcon;
     export const Settings = SettingsIcon;
+    export const Success = SuccessIcon;
+    export const Error = ErrorIcon;
 }
