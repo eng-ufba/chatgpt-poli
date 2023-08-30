@@ -18,7 +18,6 @@ export const Sidebar = (props: SidebarProps): ReactElement => {
     const [page, setPage] = [useContext(ContextPage), useContext(SetContextPage)];
     const chatsStore = useContext(ContextChats);
     const chats = chatsStore.getAll();
-    const [isEditingTitleList, setIsEditingTitleList] = useState(chats.map(_ => false));
 
     const addNewChat = (): void => {
         chatsStore.add({
@@ -94,7 +93,7 @@ export const Sidebar = (props: SidebarProps): ReactElement => {
             <div className="middle-container">
             {chats.map((chat, index) => {
             return <div className={getChatContainerClass(index)} key={'chat-'+ chat.id} onClick={() => onChatClick(index)}>
-            <h3 className="text" contentEditable={isEditingTitleList[index]}>{chat.title}</h3>
+            <h3 className="text">{chat.title}</h3>
             <button hidden={isToHideIcon(index)} className="edit-button" onClick={() => editChatTitle(chat.id)}>
                 <Icon.Edit />
             </button>

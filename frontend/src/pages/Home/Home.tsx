@@ -226,7 +226,7 @@ export const Home  = (): ReactElement => {
                     <Loading isToShow={isToShowLoading} />
                 </div>
                 <div className="bottom-container">
-                <input ref={textInput} onKeyDown={(e) => onKeyDown(e)} type="text" placeholder="Escreva sua perga aqui..." />
+                <input ref={textInput} onKeyDown={(e) => onKeyDown(e)} type="text" placeholder="Escreva sua pergunta aqui..." />
                 <button onClick={sendQuestion}>
                     <Icon.Send />
                 </button>

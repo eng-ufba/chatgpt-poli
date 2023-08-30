@@ -71,13 +71,17 @@
             height: 1px;
             background: #C4C5D0;
         }
-    
+
         .middle-container {
+            // height: 300px;
+            height: calc(100% - 275px - 60px);
+            padding: 8px;
+            overflow: hidden;
             margin-top: 16px;
             gap: 12px;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: start;
             align-items: center;
     
             .chat-container {
@@ -156,6 +160,10 @@
                     }
                 }
             }
+
+            &:hover {
+                overflow-y: auto;
+            }
         }
     
         .links {
@@ -200,6 +208,10 @@
                         }
                     }
                 }
+            }
+
+            .middle-container {
+                overflow-y: auto;
             }
         }
     }
