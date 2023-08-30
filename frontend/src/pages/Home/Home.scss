@@ -56,6 +56,14 @@
                 }
             }
 
+            .loading-container {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 20px 0;
+            }
+
             .bottom-container {
                 bottom: 20px;
                 // position: absolute;

@@ -6,6 +6,7 @@ import { Chat, ContextChats } from "../../helpers/stores/chats";
 import { Modal } from "../../components/Modal/Modal";
 import { isEmpty, isNull, isUndefined } from "lodash";
 import './Home.scss';
+import { Loading } from "../../components/Loading/Loading";
 
 type Snackbar = {
     message: string;
@@ -25,6 +26,7 @@ export const Home  = (): ReactElement => {
     const [chatID, setChatID] = useState<null | string>(() => null);
     const title = useRef<HTMLInputElement>(null);
     const [snackbar, setSnackbar] = useState<Snackbar>(() => ({ message: '', type: 'hidden' }));
+    const [isToShowLoading, setIsToShowLoading] = useState<boolean>(() => false);
 
     const cleanTextInput = (): void => {
         if(textInput.current) {
@@ -40,30 +42,37 @@ export const Home  = (): ReactElement => {
           }
     }
 
+    const getAnswer = async (question: string): Promise<string> => {
+        return question;
+    } 
+
     const sendQuestion = async(): Promise<void> => {
         if (textInput.current && activeChat) {
-            const text = textInput.current?.value;   
+            const text = textInput.current?.value;
+            setIsToShowLoading(() => true);
+            const answer = await getAnswer(text);   
 
             chatsStore.update({
                 id: activeChat.id,
                 questions: [...activeChat.questions, text],
-                answers: [...activeChat.answers, text],
+                answers: [...activeChat.answers, answer],
             });
-
-            cleanTextInput();
         } else if(textInput.current) {
             const text = textInput.current?.value;  
             const lastPosition = chats.length;
+            setIsToShowLoading(() => true);
+            const answer = await getAnswer(text);   
 
             chatsStore.add({
                 title: text.length < 15 ? text : text.slice(0, 15) + '...',
                 questions: [text],
-                answers: [text]
+                answers: [answer]
             });
 
             setActiveChatIndex(lastPosition);
-            cleanTextInput();
         }
+        setIsToShowLoading(() => false);
+        cleanTextInput();
     }
 
     const copyAnswer = (index: number): void => {
@@ -213,12 +222,15 @@ export const Home  = (): ReactElement => {
                     </div>
                 })}
                 </div>
-            <div className="bottom-container">
+                <div className="loading-container">
+                    <Loading isToShow={isToShowLoading} />
+                </div>
+                <div className="bottom-container">
                 <input ref={textInput} onKeyDown={(e) => onKeyDown(e)} type="text" placeholder="Escreva sua perga aqui..." />
                 <button onClick={sendQuestion}>
                     <Icon.Send />
                 </button>
-            </div>
+                </div>
             </div>
         </div>
         <div className="delete-modal" hidden={!isToShowDeleteModal}>
