@@ -5,8 +5,9 @@ import { Icon } from "../../components/Icons/Icon";
 import { Chat, ContextChats } from "../../helpers/stores/chats";
 import { Modal } from "../../components/Modal/Modal";
 import { isEmpty, isNull, isUndefined } from "lodash";
-import './Home.scss';
 import { Loading } from "../../components/Loading/Loading";
+import './Home.scss';
+import { ping } from "../../helpers/backend-connection";
 
 type Snackbar = {
     message: string;
@@ -27,6 +28,23 @@ export const Home  = (): ReactElement => {
     const title = useRef<HTMLInputElement>(null);
     const [snackbar, setSnackbar] = useState<Snackbar>(() => ({ message: '', type: 'hidden' }));
     const [isToShowLoading, setIsToShowLoading] = useState<boolean>(() => false);
+
+    useEffect(() => {
+        checkBackendConnection();
+    }, []);
+
+    const checkBackendConnection = async(): Promise<void> => {
+        setIsToShowLoading(() => true);
+
+        const response = await ping();
+
+        if (response === null) {
+            setSnackbar(() => ({ message: 'Falha ao conectar ao servidor, possíveis problemas ao carregar respostas', type: 'error' }));
+            closeSnackbar(4000);
+        }
+        
+        setIsToShowLoading(() => false);
+    }
 
     const cleanTextInput = (): void => {
         if(textInput.current) {
@@ -205,7 +223,7 @@ export const Home  = (): ReactElement => {
         </div>
         <div className={getContentClassName()} onClick={clickOutside} >
             <div className="container">
-                <div className="messages-container">
+                <div className={isToShowLoading ? "messages-container-loading" : "messages-container"}>
                 {activeChat && activeChat.questions.map((question, index) => {
                     return <div key={'message-container-' + index}>
                         <div className="question-container">
