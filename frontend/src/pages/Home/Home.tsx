@@ -60,10 +60,6 @@ export const Home  = (): ReactElement => {
           }
     }
 
-    const getAnswer = async (question: string): Promise<string> => {
-        return question;
-    } 
-
     const sendQuestion = async(): Promise<void> => {
         const rawCourse = localStorage.getItem('course');
         const course = isString(rawCourse) ? JSON.parse(rawCourse)  : null;
