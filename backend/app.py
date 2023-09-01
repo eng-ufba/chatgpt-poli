@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, Response
+from flask import Flask
 from endpoints.answer import get_answer
 from flask_cors import CORS
 
