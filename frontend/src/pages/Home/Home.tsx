@@ -1,13 +1,13 @@
 import { ReactElement, SyntheticEvent, useContext, useEffect, useRef, useState } from "react";
-import { ContextPage, SetContextPage } from "../../helpers/page-manager/pageManager";
+import { ContextPage, PAGE_VALUE, SetContextPage } from "../../helpers/page-manager/pageManager";
 import { Sidebar } from "../../components/Sidebar/Sidebar";
 import { Icon } from "../../components/Icons/Icon";
 import { Chat, ContextChats } from "../../helpers/stores/chats";
 import { Modal } from "../../components/Modal/Modal";
-import { isEmpty, isNull, isUndefined } from "lodash";
+import { isEmpty, isError, isNull, isString, isUndefined } from "lodash";
 import { Loading } from "../../components/Loading/Loading";
 import './Home.scss';
-import { ping } from "../../helpers/backend-connection";
+import { Course, ping, sendQuestionRequest } from "../../helpers/backend-connection";
 
 type Snackbar = {
     message: string;
@@ -65,32 +65,53 @@ export const Home  = (): ReactElement => {
     } 
 
     const sendQuestion = async(): Promise<void> => {
-        if (textInput.current && activeChat) {
-            const text = textInput.current?.value;
-            setIsToShowLoading(() => true);
-            const answer = await getAnswer(text);   
+        const rawCourse = localStorage.getItem('course');
+        const course = isString(rawCourse) ? JSON.parse(rawCourse)  : null;
+        
+        if (isString(course)) {
+            if (textInput.current && activeChat) {
+                const text = textInput.current.value;
+                setIsToShowLoading(() => true);
+                const answerResponse = await sendQuestionRequest(text, course as Course);
 
-            chatsStore.update({
-                id: activeChat.id,
-                questions: [...activeChat.questions, text],
-                answers: [...activeChat.answers, answer],
-            });
-        } else if(textInput.current) {
-            const text = textInput.current?.value;  
-            const lastPosition = chats.length;
-            setIsToShowLoading(() => true);
-            const answer = await getAnswer(text);   
+                if (isError(answerResponse)) {
+                    setSnackbar(() => ({ message: 'Não foi possível gerar a resposta', type: 'error' }));
+                    closeSnackbar(5000);
+                } else {
+                    chatsStore.update({
+                        id: activeChat.id,
+                        questions: [...activeChat.questions, text],
+                        answers: [...activeChat.answers, answerResponse.answer],
+                    });
+                }
+            } else if(textInput.current) {
+                const text = textInput.current.value;  
+                const lastPosition = chats.length;
+                setIsToShowLoading(() => true);
+                const answerResponse = await sendQuestionRequest(text, course as Course);
 
-            chatsStore.add({
-                title: text.length < 15 ? text : text.slice(0, 15) + '...',
-                questions: [text],
-                answers: [answer]
-            });
-
-            setActiveChatIndex(lastPosition);
+                if (isError(answerResponse)) {
+                    setSnackbar(() => ({ message: 'Não foi possível gerar a resposta', type: 'error' }));
+                    closeSnackbar(5000);
+                }
+                else {
+                    chatsStore.add({
+                        title: text.length < 15 ? text : text.slice(0, 15) + '...',
+                        questions: [text],
+                        answers: [answerResponse.answer]
+                    });
+        
+                    setActiveChatIndex(lastPosition);
+                }
+            }
+            setIsToShowLoading(() => false);
+            cleanTextInput();
+        } else {
+            setSnackbar(() => ({ message: 'Você não selecionou um curso, vamos direcioná-lo pra página de escolha de curso.', type: 'warn' }));
+            closeSnackbar(5000).then(() => {
+                setPage(PAGE_VALUE.CHOOSE_COURSE);
+            })
         }
-        setIsToShowLoading(() => false);
-        cleanTextInput();
     }
 
     const copyAnswer = (index: number): void => {
@@ -182,15 +203,19 @@ export const Home  = (): ReactElement => {
         closeSnackbar(2000);
     }
 
-    const closeSnackbar = (time?: number): void => {
-        if (time) {
-            setTimeout(() => {
-                closeSnackbar();
-            }, time);
-        }
-        else {
-            setSnackbar((previousSnackbar) => ({ message: previousSnackbar.message, type: 'hidden' }));
-        }
+    const closeSnackbar = (time?: number): Promise<void> => {
+        return new Promise((resolve) => {
+            if (time) {
+                setTimeout(() => {
+                    closeSnackbar().then(() => resolve());
+                }, time);
+            } else {
+                setTimeout(() => {
+                    setSnackbar((previousSnackbar) => ({ message: previousSnackbar.message, type: 'hidden' }));
+                    resolve();
+                }, 0);
+            }
+        });
     }
 
     const getSnackbarClassName = (): string => {
