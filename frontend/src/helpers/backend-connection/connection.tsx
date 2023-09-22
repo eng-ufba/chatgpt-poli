@@ -26,7 +26,7 @@ export const ping = async (): Promise<PingResponse | null> => {
 }
 
 export type Course = "engenharia de controle e automação" | "engenharia química";
-type SendQuestionResponse = { answer: string };
+type SendQuestionResponse = string;
 
 export const sendQuestionRequest = async(question: string, course: Course): Promise<SendQuestionResponse | Error> => {
     try {

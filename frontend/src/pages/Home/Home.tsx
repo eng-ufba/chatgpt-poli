@@ -69,6 +69,7 @@ export const Home  = (): ReactElement => {
                 const text = textInput.current.value;
                 setIsToShowLoading(() => true);
                 const answerResponse = await sendQuestionRequest(text, course as Course);
+                console.log(answerResponse)
 
                 if (isError(answerResponse)) {
                     setSnackbar(() => ({ message: 'Não foi possível gerar a resposta', type: 'error' }));
@@ -77,7 +78,7 @@ export const Home  = (): ReactElement => {
                     chatsStore.update({
                         id: activeChat.id,
                         questions: [...activeChat.questions, text],
-                        answers: [...activeChat.answers, answerResponse.answer],
+                        answers: [...activeChat.answers, answerResponse],
                     });
                 }
             } else if(textInput.current) {
@@ -94,7 +95,7 @@ export const Home  = (): ReactElement => {
                     chatsStore.add({
                         title: text.length < 15 ? text : text.slice(0, 15) + '...',
                         questions: [text],
-                        answers: [answerResponse.answer]
+                        answers: [answerResponse]
                     });
         
                     setActiveChatIndex(lastPosition);
