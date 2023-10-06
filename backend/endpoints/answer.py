@@ -14,14 +14,21 @@ def get_answer():
 
     # Get the data from the body
     question = request.json['question']
+    print(question)
     course = request.json['course']
+    message_for_no_answer = ''
+
 
     if course.lower() == "engenharia de controle e automação":
+        message_for_no_answer = 'Envie sua dúvida para engquim@ufba.br, não há resposta disponível'
+
         # Load the vectorstore from a file, containing info from geral and engenharia de automacao
         with open("./automacao.pkl", "rb") as f:
             vectorstore = pickle.load(f)
     
     elif course.lower() == "engenharia química":
+        message_for_no_answer = 'Envie sua dúvida para engautomacao@ufba.br, não há resposta disponível'
+
         # Load the vectorstore from a file, containing info from geral and engenharia química
         with open("./quimica.pkl", "rb") as f:
             vectorstore = pickle.load(f)
@@ -43,7 +50,7 @@ def get_answer():
     # Create conversation chain
     conversation_chain = get_conversation_chain(vectorstore)
 
-    response = conversation_chain({ 'question': question })
+    response = conversation_chain({ 'question': question + '.Se não achar respostas nos textos, retorne exatamente a mensagem:' + message_for_no_answer })
     print(response)
 
     # Get the 'answer' property from the resonde
