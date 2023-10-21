@@ -1,12 +1,7 @@
-from flask import request, jsonify, Response
-from endpoints.automacao.automacao import load_automacao
-from endpoints.quimica.quimica import load_quimica
-from endpoints.geral.geral import load_geral
-from helpers.get_env_variables import get_openai_api_key, get_hugging_face_token
-from helpers.chunks import get_text_chunks, get_vectors_store, get_conversation_chain
+from flask import request, Response
+from helpers.chunks import get_conversation_chain
 from dotenv import load_dotenv
 import pickle
-import json
 
 def get_answer():
     # Load variables from .env file into environment
