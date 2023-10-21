@@ -20,14 +20,14 @@ def get_answer():
 
 
     if course.lower() == "engenharia de controle e automação":
-        message_for_no_answer = 'Envie sua dúvida para engquim@ufba.br, não há resposta disponível'
+        message_for_no_answer = 'Envie sua dúvida para engautomacao@ufba.br, não há resposta disponível'
 
         # Load the vectorstore from a file, containing info from geral and engenharia de automacao
         with open("./automacao.pkl", "rb") as f:
             vectorstore = pickle.load(f)
     
     elif course.lower() == "engenharia química":
-        message_for_no_answer = 'Envie sua dúvida para engautomacao@ufba.br, não há resposta disponível'
+        message_for_no_answer = 'Envie sua dúvida para engquim@ufba.br, não há resposta disponível'
 
         # Load the vectorstore from a file, containing info from geral and engenharia química
         with open("./quimica.pkl", "rb") as f:
