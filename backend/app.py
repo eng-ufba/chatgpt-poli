@@ -16,4 +16,4 @@ def generate_answer():
     return get_answer()
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
