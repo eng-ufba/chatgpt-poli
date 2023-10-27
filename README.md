@@ -2,14 +2,40 @@
 
 Este documento serve como um guia para o trabalho de conclusão de curso na modalidade software no curso de engenharia de controle e automação cursado na Universidade Federal da Bahia (UFBA). O guia fornece instruções passo a passo para iniciantes que desejam executar o projeto "chatgpt-poli", que consiste em um frontend desenvolvido em React e um backend em Python com Flask. É fundamental seguir todas as etapas com atenção para assegurar o correto funcionamento do projeto.
 
-<hr />
+# Guia para Iniciantes: Rodando um Projeto com Frontend (React) e Backend (Python + Flask)
 
-### Índice
-* [Passo 1: Clonar o Projeto](https://github.com/eng-ufba/chatgpt-poli#passo-1-clonar-o-projeto)
-* [Passo 2: Configurar o Backend](https://github.com/eng-ufba/chatgpt-poli#passo-2-configurar-o-backend)
-* [Passo 3: Rodar o Backend](https://github.com/eng-ufba/chatgpt-poli#passo-2-configurar-o-backend)
-* [Passo 4: Rodar o Frontend](https://github.com/eng-ufba/chatgpt-poli#passo-2-configurar-o-backend)
-* [Passo 5: Acessar a Aplicação](https://github.com/eng-ufba/chatgpt-poli#passo-2-configurar-o-backend)
+**Resumo:**
+
+Este documento serve como um guia para o trabalho de conclusão de curso na modalidade "Software: Controle e Sistemas Não Lineares" na Universidade Federal da Bahia (UFBA). O guia fornece instruções passo a passo para iniciantes que desejam executar o projeto "chatgpt-poli", que consiste em um frontend desenvolvido em React e um backend em Python com Flask. É fundamental seguir todas as etapas com atenção para assegurar o correto funcionamento do projeto.
+
+## Índice
+
+1. [Pré-requisitos](#pré-requisitos)
+   - 1.1 [VSCode](#vscode)
+   - 1.2 [Python 3.11.0](#python-3110)
+   - 1.3 [Node.js 18.12.1](#nodejs-18121)
+
+2. [Passo 1: Clonar o Projeto](#passo-1-clonar-o-projeto)
+   - 2.1 [Abrir o VSCode](#abrir-o-vscode)
+   - 2.2 [Abrir o Terminal](#abrir-o-terminal)
+   - 2.3 [Clonar o Projeto do GitHub](#clonar-o-projeto-do-github)
+
+3. [Passo 2: Configurar o Backend](#passo-2-configurar-o-backend)
+   - 3.1 [Acessar o Site da OpenAI](#acessar-o-site-da-openai)
+   - 3.2 [Criar uma Conta ou Fazer Login](#criar-uma-conta-ou-fazer-login)
+   - 3.3 [Gerar uma Chave de API](#gerar-uma-chave-de-api)
+   - 3.4 [Copiar a Chave de API](#copiar-a-chave-de-api)
+   - 3.5 [Abrir o Terminal do VSCode](#abrir-o-terminal-do-vscode)
+   - 3.6 [Navegar até a Pasta do Backend](#navegar-até-a-pasta-do-backend)
+   - 3.7 [Criar o Arquivo .env](#criar-o-arquivo-env)
+   - 3.8 [Abrir o Arquivo .env](#abrir-o-arquivo-env)
+
+4. [Passo 3: Rodar o Backend](#passo-3-rodar-o-backend)
+
+5. [Passo 4: Rodar o Frontend](#passo-4-rodar-o-frontend)
+
+6. [Passo 5: Acessar a Aplicação](#passo-5-acessar-a-aplicação)
+
 
 ### Passo 1: Clonar o Projeto
 
