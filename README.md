@@ -2,12 +2,6 @@
 
 Este documento serve como um guia para o trabalho de conclusão de curso na modalidade software no curso de engenharia de controle e automação cursado na Universidade Federal da Bahia (UFBA). O guia fornece instruções passo a passo para iniciantes que desejam executar o projeto "chatgpt-poli", que consiste em um frontend desenvolvido em React e um backend em Python com Flask. É fundamental seguir todas as etapas com atenção para assegurar o correto funcionamento do projeto.
 
-# Guia para Iniciantes: Rodando um Projeto com Frontend (React) e Backend (Python + Flask)
-
-**Resumo:**
-
-Este documento serve como um guia para o trabalho de conclusão de curso na modalidade "Software: Controle e Sistemas Não Lineares" na Universidade Federal da Bahia (UFBA). O guia fornece instruções passo a passo para iniciantes que desejam executar o projeto "chatgpt-poli", que consiste em um frontend desenvolvido em React e um backend em Python com Flask. É fundamental seguir todas as etapas com atenção para assegurar o correto funcionamento do projeto.
-
 ## Índice
 
 1. [Pré-requisitos](#pré-requisitos)
