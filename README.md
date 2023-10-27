@@ -2,6 +2,15 @@
 
 Este documento serve como um guia para o trabalho de conclusão de curso na modalidade software no curso de engenharia de controle e automação cursado na Universidade Federal da Bahia (UFBA). O guia fornece instruções passo a passo para iniciantes que desejam executar o projeto "chatgpt-poli", que consiste em um frontend desenvolvido em React e um backend em Python com Flask. É fundamental seguir todas as etapas com atenção para assegurar o correto funcionamento do projeto.
 
+<hr />
+
+### Índice
+* [Passo 1: Clonar o Projeto](https://github.com/eng-ufba/chatgpt-poli#passo-1-clonar-o-projeto)
+* [Passo 2: Configurar o Backend](https://github.com/eng-ufba/chatgpt-poli#passo-2-configurar-o-backend)
+* [Passo 3: Rodar o Backend](https://github.com/eng-ufba/chatgpt-poli#passo-2-configurar-o-backend)
+* [Passo 4: Rodar o Frontend](https://github.com/eng-ufba/chatgpt-poli#passo-2-configurar-o-backend)
+* [Passo 5: Acessar a Aplicação](https://github.com/eng-ufba/chatgpt-poli#passo-2-configurar-o-backend)
+
 ### Passo 1: Clonar o Projeto
 
 1. Abra o VSCode após a instalação.
