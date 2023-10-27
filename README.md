@@ -1,4 +1,6 @@
-Peço desculpas pela confusão anterior. Aqui estão as instruções em formato de texto:
+# GUIA PARA RODAR O CHATGPT POLI 
+
+Este documento serve como um guia para o trabalho de conclusão de curso na modalidade software no curso de engenharia de controle e automação cursado na Universidade Federal da Bahia (UFBA). O guia fornece instruções passo a passo para iniciantes que desejam executar o projeto "chatgpt-poli", que consiste em um frontend desenvolvido em React e um backend em Python com Flask. É fundamental seguir todas as etapas com atenção para assegurar o correto funcionamento do projeto.
 
 ### Passo 1: Clonar o Projeto
 
