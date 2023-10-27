@@ -11,9 +11,9 @@ Este documento serve como um guia para o trabalho de conclusão de curso na moda
 ## Índice
 
 1. [Pré-requisitos](#pré-requisitos)
-   - 1.1 [VSCode](#vscode)
-   - 1.2 [Python 3.11.0](#python-3110)
-   - 1.3 [Node.js 18.12.1](#nodejs-18121)
+   - 1.1 [Baixaindo VSCode](#vscode)
+   - 1.2 [Baixaindo Python 3.11.0](#python-3110)
+   - 1.3 [Baixaindo Node.js 18.12.1](#nodejs-18121)
 
 2. [Passo 1: Clonar o Projeto](#passo-1-clonar-o-projeto)
    - 2.1 [Abrir o VSCode](#abrir-o-vscode)
@@ -36,6 +36,7 @@ Este documento serve como um guia para o trabalho de conclusão de curso na moda
 
 6. [Passo 5: Acessar a Aplicação](#passo-5-acessar-a-aplicação)
 
+<hr />
 
 ### Passo 1: Clonar o Projeto
 
