@@ -9,6 +9,7 @@ from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
 from dotenv import load_dotenv
 import pickle
+import os
 
 def get_pdf_text(pdf_docs):
     text = ""
@@ -84,6 +85,11 @@ def process_pdfs_and_get_answer(question, pdf_docs):
     answer = raw_answer['chat_history'][-1].content
     return answer
 
+def get_file_names(path):
+    # Get all files in the specified path
+    files = [os.path.join(path, f) for f in os.listdir(path) if os.path.isfile(os.path.join(path, f))]
+    return files
+
 def get_answer():
     # Get the data from the body
     question = request.json['question']
@@ -96,33 +102,13 @@ def get_answer():
         message_for_no_answer = 'Envie sua dúvida para engautomacao@ufba.br, não há resposta disponível'
 
         # Load all pdf files from automacao
-        pdf_files = [
-            "./pdfs/automacao/06_-_regulamento_de_atividades_complementares_assinado_1.pdf", 
-            "./pdfs/automacao/proposta_ac_nova_01_2019.pdf",
-            "./pdfs/automacao/resolucao_01_2009_-_cceca.pdf",
-            "./pdfs/automacao/resolucao_01_2017_atividades_complementares_mafm_v00.pdf",
-            "./pdfs/automacao/resolucao_01_2019_complementarresolucao012017.docx_.pdf",
-            "./pdfs/automacao/resolucao_02_2017_trabalhos_conclusao_curso.pdf",
-            "./pdfs/automacao/resolucao_02_2019_trabalhos_conclusao_cceca.pdf",
-            "./pdfs/automacao/template_projeto_inovacao_tecnologica_tcc.pdf",
-            "./pdfs/automacao/P9VZGIHQBE30W0YZ.pdf",
-            "./pdfs/automacao/REGPG_Revisado_Resolucao_03_2017.pdf",
-            "./pdfs/automacao/resolucao_04.2019_-_consuni_0_0.pdf"
-        ]
-    
+        pdf_files = get_file_names("./pdfs/automacao/")
+
     elif course.lower() == "engenharia química":
         message_for_no_answer = 'Envie sua dúvida para engquim@ufba.br, não há resposta disponível'
 
         # Load all pdf files from quimica
-        pdf_files = [
-            "./pdfs/quimica/P9VZGIHQBE30W0YZ.pdf",
-            "./pdfs/quimica/REGPG_Revisado_Resolucao_03_2017.pdf",
-            "./pdfs/quimica/resolucao_04.2019_-_consuni_0_0.pdf",
-            "./pdfs/quimica/resolucao_cceq_-01-2012_estagio_0.pdf",
-            "./pdfs/quimica/resolucao_cceq-0105_atividades_complementares_0.pdf",
-            "./pdfs/quimica/resolucao_cceq-0208_trancamento_permanencia_0.pdf",
-            "./pdfs/quimica/resolucao_tfc_2017_0.pdf"
-        ]
+        pdf_files = get_file_names("./pdfs/quimica/")
         
     else:
         return Response('Incorrect course type', status=400)
