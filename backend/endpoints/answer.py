@@ -44,15 +44,40 @@ def get_conversation_chain(vectorstore):
     )
     return conversation_chain
 
-def process_pdfs_and_get_answer(question, pdf_docs):
-    load_dotenv()
+def load_vectorstore_from_file(course):
+    filename = f"engenharia_de_controle_e_automacao.pkl" # Fallback will be engenharia de controle e automação
+
+    if course.lower() == "engenharia de controle e automação":
+        filename = f"engenharia_de_controle_e_automacao.pkl"
+
+    elif course.lower() == "engenharia química":
+        filename = f"engenharia_quimica.pkl"
+
+    with open(filename, "rb") as f:
+        vectorstore = pickle.load(f)
+    return vectorstore
+    
+def load_vectorstore(course, pdf_docs):
     raw_text = get_pdf_text(pdf_docs)
     text_chunks = get_text_chunks(raw_text)
     vectorstore = get_vectorstore(text_chunks)
 
-    # Save the vectorstore to a file (optional)
-    with open("vectorstore.pkl", "wb") as f:
-        pickle.dump(vectorstore, f)
+    # Save the vectorstore to a file 
+    if course.lower() == "engenharia de controle e automação":
+        with open("engenharia_de_controle_e_automacao.pkl", "wb") as f:
+            pickle.dump(vectorstore, f)
+
+    elif course.lower() == "engenharia química":
+        with open("engenharia_quimica.pkl", "wb") as f:
+            pickle.dump(vectorstore, f)
+
+    return vectorstore
+
+def process_pdfs_and_get_answer(question, pdf_docs):
+    load_dotenv()
+    course = request.json['course']
+    # vectorstore = load_vectorstore(course, pdf_docs) # Uncomment this function when need to change some pdf
+    vectorstore = load_vectorstore_from_file(course) # Comment this function when need to change some pdf
 
     conversation_chain = get_conversation_chain(vectorstore)
     raw_answer = conversation_chain({'question': question})
