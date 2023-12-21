@@ -1,5 +1,4 @@
 from flask import request, Response
-from helpers.chunks import get_conversation_chain
 from PyPDF2 import PdfReader
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.embeddings import OpenAIEmbeddings
